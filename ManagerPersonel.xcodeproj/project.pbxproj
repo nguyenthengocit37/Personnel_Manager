@@ -99,9 +99,9 @@
 		5263901C2823810B00D73315 /* ManagerPersonel */ = {
 			isa = PBXGroup;
 			children = (
-				5263905728238FDC00D73315 /* Controller */,
 				526390212823810B00D73315 /* ViewController.swift */,
 				526390232823810B00D73315 /* Main.storyboard */,
+				526390262823810F00D73315 /* Assets.xcassets */,
 				526390532823841600D73315 /* System */,
 			);
 			path = ManagerPersonel;
@@ -130,18 +130,10 @@
 			children = (
 				5263901D2823810B00D73315 /* AppDelegate.swift */,
 				5263901F2823810B00D73315 /* SceneDelegate.swift */,
-				526390262823810F00D73315 /* Assets.xcassets */,
 				526390282823810F00D73315 /* LaunchScreen.storyboard */,
 				5263902B2823810F00D73315 /* Info.plist */,
 			);
 			name = System;
-			sourceTree = "<group>";
-		};
-		5263905728238FDC00D73315 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
