@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lm6-sw-Hcd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UpY-LN-j3T">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login Controller-->
         <scene sceneID="CKg-9c-JY1">
             <objects>
-                <viewController id="UpY-LN-j3T" sceneMemberID="viewController">
+                <viewController id="UpY-LN-j3T" customClass="LoginController" customModule="ManagerPersonel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="feg-NA-7dA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -59,13 +59,13 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="lVc-Rq-otJ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="107"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kC6-sg-9JB">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kC6-sg-9JB">
                                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="40"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="40" id="FAJ-Zv-tbI"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" textContentType="email"/>
                                                                     </textField>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aZT-xy-iuS">
                                                                         <rect key="frame" x="0.0" y="67" width="300" height="40"/>
@@ -73,7 +73,7 @@
                                                                             <constraint firstAttribute="height" constant="40" id="eVW-k6-OE7"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                                     </textField>
                                                                 </subviews>
                                                                 <constraints>
@@ -93,6 +93,9 @@
                                                                         <state key="normal" title="Sign In">
                                                                             <color key="titleColor" systemColor="tertiarySystemBackgroundColor"/>
                                                                         </state>
+                                                                        <connections>
+                                                                            <action selector="btnLogin:" destination="UpY-LN-j3T" eventType="touchUpInside" id="zYC-Vf-G9t"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <constraints>
@@ -150,6 +153,10 @@
                             <constraint firstItem="HEx-Bx-uXu" firstAttribute="bottom" secondItem="GLZ-WZ-pTY" secondAttribute="bottom" constant="20" id="y6P-96-YU6"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tfEmail" destination="kC6-sg-9JB" id="Y5B-yU-vcU"/>
+                        <outlet property="tfPassword" destination="aZT-xy-iuS" id="5SD-db-vux"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DrT-L9-Ixw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -182,12 +189,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EoO-7T-gCt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1300" y="790.84821428571422"/>
+            <point key="canvasLocation" x="390" y="1529"/>
         </scene>
         <!--Position-->
         <scene sceneID="IRz-hy-Um3">
             <objects>
-                <tableViewController id="qix-mT-jth" sceneMemberID="viewController">
+                <tableViewController id="qix-mT-jth" customClass="PesonnelController" customModule="ManagerPersonel" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Usj-ho-ytp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -211,7 +218,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SxF-xy-TeZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-273.91304347826087" y="790.84821428571422"/>
+            <point key="canvasLocation" x="-1184" y="1499"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="YJK-yb-TSl">
@@ -219,6 +226,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Lm6-sw-Hcd" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6Rp-3H-dbA">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -260,7 +268,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oNy-pk-iYl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2878.2608695652175" y="790.84821428571422"/>
+            <point key="canvasLocation" x="1968" y="1573"/>
         </scene>
         <!--Deperment-->
         <scene sceneID="JoU-JF-LH2">
@@ -289,7 +297,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sT5-Qo-Mg1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4485.507246376812" y="790.84821428571422"/>
+            <point key="canvasLocation" x="3575" y="1573"/>
         </scene>
         <!--Position-->
         <scene sceneID="JwL-ab-bue">
