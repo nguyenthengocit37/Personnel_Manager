@@ -160,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DrT-L9-Ixw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-978.26086956521749" y="0.6696428571428571"/>
+            <point key="canvasLocation" x="-1080" y="1"/>
         </scene>
         <!--Project-->
         <scene sceneID="Lec-zY-ZP9">
@@ -194,7 +194,7 @@
         <!--Position-->
         <scene sceneID="IRz-hy-Um3">
             <objects>
-                <tableViewController id="qix-mT-jth" customClass="PesonnelController" customModule="ManagerPersonel" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="qix-mT-jth" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Usj-ho-ytp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -220,11 +220,12 @@
             </objects>
             <point key="canvasLocation" x="-1184" y="1499"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main View Controller-->
         <scene sceneID="YJK-yb-TSl">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Lm6-sw-Hcd" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainviewcontroller" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Lm6-sw-Hcd" customClass="MainViewController" customModule="ManagerPersonel" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="HkE-Cy-w3v"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6Rp-3H-dbA">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -244,7 +245,7 @@
         <!--Personnel-->
         <scene sceneID="G2G-it-r8Y">
             <objects>
-                <tableViewController id="FyP-J8-Ydt" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="personnel" id="FyP-J8-Ydt" customClass="PersonnelController" customModule="ManagerPersonel" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="IBs-gM-JZw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -264,7 +265,14 @@
                             <outlet property="delegate" destination="FyP-J8-Ydt" id="esy-yD-32I"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Personnel" id="FW4-OV-oEq"/>
+                    <navigationItem key="navigationItem" title="Personnel" id="FW4-OV-oEq">
+                        <barButtonItem key="leftBarButtonItem" image="trash.fill" catalog="system" id="6Wy-P8-XR9">
+                            <color key="tintColor" systemColor="systemRedColor"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="3e6-VT-kiE">
+                            <color key="tintColor" systemColor="systemRedColor"/>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oNy-pk-iYl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -382,6 +390,7 @@
         <image name="logo" width="300" height="166.66667175292969"/>
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="square.grid.2x2.fill" catalog="system" width="128" height="114"/>
+        <image name="trash.fill" catalog="system" width="121" height="128"/>
         <systemColor name="placeholderTextColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
