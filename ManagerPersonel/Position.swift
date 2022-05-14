@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 class Position{
     //MARK: Properties
     var codePosition:Int
