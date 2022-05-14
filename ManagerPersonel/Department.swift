@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 class Department{
     //MARK: Properties
     var codeDepartment:String
