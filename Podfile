@@ -20,5 +20,6 @@ pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'Toast-Swift', '~> 5.0.1'
+pod 'DropDown'
 
 end

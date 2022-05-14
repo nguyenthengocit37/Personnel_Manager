@@ -13,6 +13,8 @@
 		52514A47282F483A0080F13D /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52514A46282F483A0080F13D /* Project.swift */; };
 		52514A4C282F484B0080F13D /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52514A4B282F484B0080F13D /* Department.swift */; };
 		52514A51282F48590080F13D /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52514A50282F48590080F13D /* Position.swift */; };
+		5258614E282FFD6500380104 /* PersonnelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5258614D282FFD6500380104 /* PersonnelTableViewCell.swift */; };
+		5258616C283003BB00380104 /* PersonnelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5258616B283003BB00380104 /* PersonnelDetailViewController.swift */; };
 		5263901E2823810B00D73315 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263901D2823810B00D73315 /* AppDelegate.swift */; };
 		526390202823810B00D73315 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263901F2823810B00D73315 /* SceneDelegate.swift */; };
 		526390222823810B00D73315 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526390212823810B00D73315 /* ViewController.swift */; };
@@ -55,6 +57,8 @@
 		52514A46282F483A0080F13D /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		52514A4B282F484B0080F13D /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
 		52514A50282F48590080F13D /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		5258614D282FFD6500380104 /* PersonnelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonnelTableViewCell.swift; sourceTree = "<group>"; };
+		5258616B283003BB00380104 /* PersonnelDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonnelDetailViewController.swift; sourceTree = "<group>"; };
 		5263901A2823810B00D73315 /* ManagerPersonel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManagerPersonel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5263901D2823810B00D73315 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5263901F2823810B00D73315 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +122,14 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		5258614C282FFD4000380104 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				5258614D282FFD6500380104 /* PersonnelTableViewCell.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
 		526390112823810B00D73315 = {
 			isa = PBXGroup;
 			children = (
@@ -146,8 +158,7 @@
 				5246BCD0282ECE1E00EF9D31 /* Models */,
 				52CC9E59282E5D8C00B72CAF /* ViewController */,
 				526390232823810B00D73315 /* Main.storyboard */,
-				526390262823810F00D73315 /* Assets.xcassets */,
-				5249FD82282E08A000A1B5A9 /* GoogleService-Info.plist */,
+				5258614C282FFD4000380104 /* Controls */,
 				526390532823841600D73315 /* System */,
 			);
 			path = ManagerPersonel;
@@ -174,6 +185,8 @@
 		526390532823841600D73315 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				526390262823810F00D73315 /* Assets.xcassets */,
+				5249FD82282E08A000A1B5A9 /* GoogleService-Info.plist */,
 				5263901D2823810B00D73315 /* AppDelegate.swift */,
 				5263901F2823810B00D73315 /* SceneDelegate.swift */,
 				526390282823810F00D73315 /* LaunchScreen.storyboard */,
@@ -189,6 +202,7 @@
 				52AE1A3B282E7900002813F8 /* PersonnelController.swift */,
 				52CC9E64282E60C800B72CAF /* LoginController.swift */,
 				5246BCCB282ECB9500EF9D31 /* MainViewController.swift */,
+				5258616B283003BB00380104 /* PersonnelDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -460,11 +474,13 @@
 				526390222823810B00D73315 /* ViewController.swift in Sources */,
 				52514A4C282F484B0080F13D /* Department.swift in Sources */,
 				52CC9E65282E60C800B72CAF /* LoginController.swift in Sources */,
+				5258614E282FFD6500380104 /* PersonnelTableViewCell.swift in Sources */,
 				52AE1A3C282E7900002813F8 /* PersonnelController.swift in Sources */,
 				5246BCCC282ECB9500EF9D31 /* MainViewController.swift in Sources */,
 				5263901E2823810B00D73315 /* AppDelegate.swift in Sources */,
 				526390202823810B00D73315 /* SceneDelegate.swift in Sources */,
 				52514A51282F48590080F13D /* Position.swift in Sources */,
+				5258616C283003BB00380104 /* PersonnelDetailViewController.swift in Sources */,
 				52514A47282F483A0080F13D /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
