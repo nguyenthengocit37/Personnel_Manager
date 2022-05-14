@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LoginController : UIViewController
+@interface LoginController : UIViewControlle
 
 @end
 
