@@ -13,13 +13,9 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
     //MARK: Properties
     
     @IBOutlet weak var imgAvatar: UIImageView!
-    @IBOutlet weak var tfName: UILabel!
     
     @IBOutlet weak var segGender: UISegmentedControl!
-    @IBOutlet weak var tfProject: UITextField!
-    @IBOutlet weak var tfChucVu: UITextField!
     @IBOutlet weak var uvListDeparment: UIView!
-    @IBOutlet weak var tfDepartment: UITextField!
     
     
     //Create UI choose Deparment
