@@ -10,7 +10,6 @@ import UIKit
 class Personnel{
     //MARK: Properties
     var personnelName: String
-    var personnelAge:Int
     var personnelBirthday:Date
     var personnelGender:Int
     var codeProject:String
@@ -19,13 +18,12 @@ class Personnel{
     var personnelImage: UIImage?
     
     //MARK: Contructor
-    init?(personnelName: String,personnelAge: Int,personnelBirthday: Date,personnelGender: Int,codeProject: String,codePosition: Int,codeDerpartment: String,personnelImage: UIImage?)
+    init?(personnelName: String,personnelBirthday: Date, personnelGender: Int,codeProject: String,codePosition: Int,codeDerpartment: String,personnelImage: UIImage?)
     {
         if personnelName.isEmpty || codeProject.isEmpty || codeDerpartment.isEmpty{
             return nil
         }
         self .personnelName = personnelName
-        self .personnelAge = personnelAge
         self .personnelBirthday = personnelBirthday
         self .personnelGender = personnelGender
         self .codeProject = codeProject
