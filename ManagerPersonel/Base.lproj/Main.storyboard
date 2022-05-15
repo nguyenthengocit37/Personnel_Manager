@@ -207,7 +207,19 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dg8-8K-2sb" id="2Jg-rp-ioD">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quan Ly" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MNs-s4-3w3">
+                                            <rect key="frame" x="148" y="11" width="72" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="kV7-SN-Wg8" kind="showDetail" id="b3C-f0-tbF"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -220,6 +232,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SxF-xy-TeZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1184" y="1499"/>
+        </scene>
+        <!--Chuc Vu-->
+        <scene sceneID="U3L-w7-ypn">
+            <objects>
+                <viewController id="itQ-8h-UQr" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ATg-wM-6iV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="WrD-YR-hGM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Chuc Vu" id="DkE-49-h3Q"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ukc-nW-qce" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-432" y="2241"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="YJK-yb-TSl">
@@ -544,7 +572,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="0NB-5i-itH">
-                                                <rect key="frame" x="98" y="0.0" width="256" height="50"/>
+                                                <rect key="frame" x="98.333333333333357" y="0.0" width="255.66666666666663" height="50"/>
                                                 <color key="tintColor" systemColor="systemRedColor"/>
                                             </datePicker>
                                         </subviews>
@@ -706,7 +734,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rDy-4Q-vIe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2886.9565217391305" y="2347.0982142857142"/>
+            <point key="canvasLocation" x="3797.1014492753625" y="2347.0982142857142"/>
         </scene>
         <!--Deperment-->
         <scene sceneID="JoU-JF-LH2">
@@ -829,7 +857,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqk-iy-kkf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1968" y="2349"/>
+            <point key="canvasLocation" x="2876.811594202899" y="2348.4375"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1pJ-Jo-U74">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kV7-SN-Wg8" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cmx-Cq-OM3">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="itQ-8h-UQr" kind="relationship" relationship="rootViewController" id="11z-3A-UaP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dhf-yC-1Qa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1184" y="2241"/>
         </scene>
     </scenes>
     <resources>

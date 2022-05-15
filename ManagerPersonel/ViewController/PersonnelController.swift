@@ -17,7 +17,7 @@ class PersonnelController: UITableViewController {
         //Create Personnel
         let dateNow = Date()
         let avt = UIImage(named:"male")
-        if let personnel = Personnel(personnelName: "Nguyen The Ngoc", personnelBirthday: dateNow , personnelGender: 1, codeProject: "pj1", codePosition: 1, codeDerpartment: "Kinh doanh", personnelImage: avt){
+        if let personnel = Personnel(personnelName: "Nguyen The Ngoc", personnelBirthday: dateNow , personnelGender: true, codeProject: "pj1", codePosition: 1, codeDerpartment: "Kinh doanh", personnelImage: avt){
             personnels.append(personnel)
         }
         
