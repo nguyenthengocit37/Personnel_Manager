@@ -14,7 +14,6 @@ class PersonnelTableViewCell: UITableViewCell {
     @IBOutlet weak var tfPosition: UILabel!
     @IBOutlet weak var tfDepartment: UILabel!
     @IBOutlet weak var tfProject: UILabel!
-    
     @IBOutlet weak var imgAvt: UIImageView!
     
     override func awakeFromNib() {

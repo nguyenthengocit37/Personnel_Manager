@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5246BCCC282ECB9500EF9D31 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246BCCB282ECB9500EF9D31 /* MainViewController.swift */; };
 		5246BCD2282ECE9C00EF9D31 /* Personnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246BCD1282ECE9C00EF9D31 /* Personnel.swift */; };
+		52485BB22831BC4500CCAC1A /* PositionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52485BB12831BC4500CCAC1A /* PositionTableViewCell.swift */; };
+		52485BCE2831BD5200CCAC1A /* PositionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52485BCD2831BD5200CCAC1A /* PositionTableViewController.swift */; };
 		5249FD83282E08A000A1B5A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5249FD82282E08A000A1B5A9 /* GoogleService-Info.plist */; };
 		52514A47282F483A0080F13D /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52514A46282F483A0080F13D /* Project.swift */; };
 		52514A4C282F484B0080F13D /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52514A4B282F484B0080F13D /* Department.swift */; };
@@ -53,6 +55,8 @@
 		4FDC400429EEDF5D02E5BF9C /* Pods_ManagerPersonel_ManagerPersonelUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ManagerPersonel_ManagerPersonelUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5246BCCB282ECB9500EF9D31 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5246BCD1282ECE9C00EF9D31 /* Personnel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personnel.swift; sourceTree = "<group>"; };
+		52485BB12831BC4500CCAC1A /* PositionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionTableViewCell.swift; sourceTree = "<group>"; };
+		52485BCD2831BD5200CCAC1A /* PositionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionTableViewController.swift; sourceTree = "<group>"; };
 		5249FD82282E08A000A1B5A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52514A46282F483A0080F13D /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		52514A4B282F484B0080F13D /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				5258614D282FFD6500380104 /* PersonnelTableViewCell.swift */,
+				52485BB12831BC4500CCAC1A /* PositionTableViewCell.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -203,6 +208,7 @@
 				52CC9E64282E60C800B72CAF /* LoginController.swift */,
 				5246BCCB282ECB9500EF9D31 /* MainViewController.swift */,
 				5258616B283003BB00380104 /* PersonnelDetailViewController.swift */,
+				52485BCD2831BD5200CCAC1A /* PositionTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -470,6 +476,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52485BCE2831BD5200CCAC1A /* PositionTableViewController.swift in Sources */,
 				5246BCD2282ECE9C00EF9D31 /* Personnel.swift in Sources */,
 				526390222823810B00D73315 /* ViewController.swift in Sources */,
 				52514A4C282F484B0080F13D /* Department.swift in Sources */,
@@ -480,6 +487,7 @@
 				5263901E2823810B00D73315 /* AppDelegate.swift in Sources */,
 				526390202823810B00D73315 /* SceneDelegate.swift in Sources */,
 				52514A51282F48590080F13D /* Position.swift in Sources */,
+				52485BB22831BC4500CCAC1A /* PositionTableViewCell.swift in Sources */,
 				5258616C283003BB00380104 /* PersonnelDetailViewController.swift in Sources */,
 				52514A47282F483A0080F13D /* Project.swift in Sources */,
 			);
