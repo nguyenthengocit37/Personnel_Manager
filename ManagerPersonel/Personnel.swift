@@ -27,7 +27,7 @@ class Personnel{
         self .personnelBirthday = personnelBirthday
         self .personnelGender = personnelGender
         self .codeProject = codeProject
-        self .codePosition = codePosition
+        self .codePosition = codePositio
         self .codeDerpartment = codeDerpartment
         self .personnelImage = personnelImage
     }
