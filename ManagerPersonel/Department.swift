@@ -15,7 +15,7 @@ class Department{
         if(codeDepartment.isEmpty || nameDepartment.isEmpty){
             return nil
         }
-        self .codeDepartment = codeDepartment
+        self .codeDepartment = codeDepartmen
         self .nameDepartment = nameDepartment
     }
     
