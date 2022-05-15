@@ -11,14 +11,14 @@ class Personnel{
     //MARK: Properties
     var personnelName: String
     var personnelBirthday:Date
-    var personnelGender:Int
+    var personnelGender:Bool
     var codeProject:String
     var codePosition:Int
     var codeDerpartment:String
     var personnelImage: UIImage?
     
     //MARK: Contructor
-    init?(personnelName: String,personnelBirthday: Date, personnelGender: Int,codeProject: String,codePosition: Int,codeDerpartment: String,personnelImage: UIImage?)
+    init?(personnelName: String,personnelBirthday: Date, personnelGender: Bool,codeProject: String,codePosition: Int,codeDerpartment: String,personnelImage: UIImage?)
     {
         if personnelName.isEmpty || codeProject.isEmpty || codeDerpartment.isEmpty{
             return nil
