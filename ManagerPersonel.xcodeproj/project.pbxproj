@@ -12,6 +12,7 @@
 		52485BB22831BC4500CCAC1A /* PositionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52485BB12831BC4500CCAC1A /* PositionTableViewCell.swift */; };
 		52485BCE2831BD5200CCAC1A /* PositionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52485BCD2831BD5200CCAC1A /* PositionTableViewController.swift */; };
 		5249FD83282E08A000A1B5A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5249FD82282E08A000A1B5A9 /* GoogleService-Info.plist */; };
+		524A740328323946004DB663 /* PositionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A740228323946004DB663 /* PositionDetailViewController.swift */; };
 		52514A47282F483A0080F13D /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52514A46282F483A0080F13D /* Project.swift */; };
 		52514A4C282F484B0080F13D /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52514A4B282F484B0080F13D /* Department.swift */; };
 		52514A51282F48590080F13D /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52514A50282F48590080F13D /* Position.swift */; };
@@ -58,6 +59,7 @@
 		52485BB12831BC4500CCAC1A /* PositionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionTableViewCell.swift; sourceTree = "<group>"; };
 		52485BCD2831BD5200CCAC1A /* PositionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionTableViewController.swift; sourceTree = "<group>"; };
 		5249FD82282E08A000A1B5A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		524A740228323946004DB663 /* PositionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionDetailViewController.swift; sourceTree = "<group>"; };
 		52514A46282F483A0080F13D /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		52514A4B282F484B0080F13D /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
 		52514A50282F48590080F13D /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
@@ -124,6 +126,15 @@
 				52514A50282F48590080F13D /* Position.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		524A740128323910004DB663 /* Position */ = {
+			isa = PBXGroup;
+			children = (
+				52485BCD2831BD5200CCAC1A /* PositionTableViewController.swift */,
+				524A740228323946004DB663 /* PositionDetailViewController.swift */,
+			);
+			name = Position;
 			sourceTree = "<group>";
 		};
 		5258614C282FFD4000380104 /* Controls */ = {
@@ -203,12 +214,12 @@
 		52CC9E59282E5D8C00B72CAF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				524A740128323910004DB663 /* Position */,
 				526390212823810B00D73315 /* ViewController.swift */,
 				52AE1A3B282E7900002813F8 /* PersonnelController.swift */,
 				52CC9E64282E60C800B72CAF /* LoginController.swift */,
 				5246BCCB282ECB9500EF9D31 /* MainViewController.swift */,
 				5258616B283003BB00380104 /* PersonnelDetailViewController.swift */,
-				52485BCD2831BD5200CCAC1A /* PositionTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -481,6 +492,7 @@
 				526390222823810B00D73315 /* ViewController.swift in Sources */,
 				52514A4C282F484B0080F13D /* Department.swift in Sources */,
 				52CC9E65282E60C800B72CAF /* LoginController.swift in Sources */,
+				524A740328323946004DB663 /* PositionDetailViewController.swift in Sources */,
 				5258614E282FFD6500380104 /* PersonnelTableViewCell.swift in Sources */,
 				52AE1A3C282E7900002813F8 /* PersonnelController.swift in Sources */,
 				5246BCCC282ECB9500EF9D31 /* MainViewController.swift in Sources */,

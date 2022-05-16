@@ -14,15 +14,16 @@ class PersonnelController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Create Personnel
-        let dateNow = Date()
-        let avt = UIImage(named:"male")
-        if let personnel = Personnel(personnelName: "Nguyen The Ngoc", personnelBirthday: dateNow , personnelGender: true, codeProject: "pj1", codePosition: 1, codeDerpartment: "Kinh doanh", personnelImage: avt){
-            personnels.append(personnel)
-        }
+//        //Create Personnel
+//        let dateNow = Date()
+//        let avt = UIImage(named:"male")
+//        if let personnel = Personnel(personnelName: "Nguyen The Ngoc", personnelBirthday: dateNow , personnelGender: true, codeProject: "pj1", codePosition: 1, codeDerpartment: "Kinh doanh", personnelImage: avt){
+//            personnels.append(personnel)
+//        }
         
         //Add the edit button into the navigation bar
         navigationItem.leftBarButtonItem = editButtonItem
+       navigationItem.leftBarButtonItem?.tintColor = .systemRed
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
