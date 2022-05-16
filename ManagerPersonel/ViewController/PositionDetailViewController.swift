@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseDatabase
+import Toast_Swift
 
 class PositionDetailViewController: UIViewController {
 
@@ -44,30 +45,30 @@ class PositionDetailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let btnSender = sender as? UIBarButtonItem{
             if btnSender == btnSave{
-                let name = tfPosition.text ?? ""
-                switch navigationType {
-                //Create new Position
-                case .newPosition:
-                    if let id = ref.child("position").childByAutoId().key{
-                            self.ref.child("position").child(id).setValue([
-                                "codePosition": id,
-                                "namePosition": name,
-                                "countPersonnel" : 0,
-                            ])
-                            position = Position(codePosition: id, namePosition: name, countPersonnel: 0)
+                    let name = tfPosition.text ?? ""
+                    switch navigationType {
+                    //Create new Position
+                    case .newPosition:
+                        if let id = ref.child("position").childByAutoId().key{
+                                self.ref.child("position").child(id).setValue([
+                                    "codePosition": id,
+                                    "namePosition": name,
+                                    "countPersonnel" : 0,
+                                ])
+                                position = Position(codePosition: id, namePosition: name, countPersonnel: 0)
+                        }
+                    //Update Position
+                    case .updatePosition :
+                        if let key = position?.codePosition {
+                            position!.namePosition = name
+                            let pos = ["codePosition": position!.codePosition,
+                                       "namePosition": position!.namePosition,
+                                       "countPersonnel": position!.countPersonnel] as [String : Any]
+                            let childUpdate = ["/position/\(key)" : pos]
+                            self.ref.updateChildValues(childUpdate)
+                            
+                        }
                     }
-                //Update Position
-                case .updatePosition :
-                    if let key = position?.codePosition {
-                        position!.namePosition = name
-                        let pos = ["codePosition": position!.codePosition,
-                                   "namePosition": position!.namePosition,
-                                   "countPersonnel": position!.countPersonnel] as [String : Any]
-                        let childUpdate = ["/position/\(key)" : pos]
-                        self.ref.updateChildValues(childUpdate)
-                        
-                    }
-                }
             }
         }
     }

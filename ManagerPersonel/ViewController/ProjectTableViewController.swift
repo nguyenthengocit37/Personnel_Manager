@@ -1,38 +1,35 @@
 //
-//  PositionTableViewController.swift
+//  ProjectTableViewController.swift
 //  ManagerPersonel
 //
-//  Created by NGOC IT on 5/15/22.
+//  Created by NGOC IT on 5/16/22.
 //
 
 import UIKit
 import FirebaseDatabase
 
-class PositionTableViewController: UITableViewController {
+class ProjectTableViewController: UITableViewController {
     //Mark:Propeties
-    var positions = [Position]()
+    var projects = [Project]()
     var ref: DatabaseReference!
     
     enum NavigationType{
-        case newPosition
-        case updatePosition
+        case newProject
+        case updateProject
     }
-    var navigationType:NavigationType = .newPosition
-    
+    var navigationType:NavigationType = .newProject
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //Get Url FireBase
         ref = Database.database().reference()
         //Get list Data
         getData()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         self.navigationItem.leftBarButtonItem = self.editButtonItem
-        self.navigationItem.leftBarButtonItem?.tintColor = .systemRed
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
+       self.navigationItem.leftBarButtonItem?.tintColor = .systemRed
     }
 
     // MARK: - Table view data source
@@ -44,17 +41,16 @@ class PositionTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return positions.count
+        return projects.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "positionTableViewCell", for: indexPath) as? PositionTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "projectTableViewCell", for: indexPath) as? ProjectTableViewCell{
             
-            let position = positions[indexPath.row]
-            cell.txtPositionName.text = position.namePosition
+            let project = projects[indexPath.row]
+            cell.txtProject.text = project.nameProject
             return cell
-            
         }else{
             fatalError("Khong the tao cell")
         }
@@ -74,9 +70,9 @@ class PositionTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            let key = positions[indexPath.row].codePosition
-            self.ref.child("position").child(key).removeValue()
-            positions.remove(at: indexPath.row)
+            let key = projects[indexPath.row].codeProject
+            self.ref.child("project").child(key).removeValue()
+            projects.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -104,50 +100,52 @@ class PositionTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //Indentifying new Position or update Position
-        if let idenfifier = segue.identifier{
-            switch idenfifier {
-            case "newPosition":
-//               print("Add new Position")
-                navigationType = .newPosition
-                
-                if let destinationController = segue.destination as? PositionDetailViewController {
-                    destinationController.navigationType = .newPosition
+        
+            //Indentifying new Project or edit Project
+            if let idenfifier = segue.identifier{
+                switch idenfifier {
+                case "newProject":
+    //               print("Add new Project")
+                    navigationType = .newProject
+                    
+                    if let destinationController = segue.destination as? ProjectViewController {
+                        destinationController.navigationType = .newProject
+                            }
+                case "updateProject":
+    //                print("update Project")
+                    navigationType = .updateProject
+                    if let selectedIndexPath = tableView.indexPathForSelectedRow{
+                        let selectedRow = selectedIndexPath.row
+                        let selectedProject = projects[selectedRow]
+                        //Get the destination controller
+                        if let destinationController = segue.destination as? ProjectViewController {
+                            destinationController.project = selectedProject
+                            destinationController.navigationType = .updateProject
                         }
-            case "updatePosition":
-//                print("update Position")
-                navigationType = .updatePosition
-                if let selectedIndexPath = tableView.indexPathForSelectedRow{
-                    let selectedRow = selectedIndexPath.row
-                    let selectedPosition = positions[selectedRow]
-                    //Get the destination controller
-                    if let destinationController = segue.destination as? PositionDetailViewController {
-                        destinationController.position = selectedPosition
-                        destinationController.navigationType = .updatePosition
                     }
+                default: break
                 }
-            default: break
-            }
-                }
+                    }
     }
     
-    @IBAction func unWindFromPositionDetailController(segue:UIStoryboardSegue){
-        if let positionController = segue.source as? PositionDetailViewController{
+    //Handle unWind
+    @IBAction func unWindFromProjectDetailController(segue:UIStoryboardSegue){
+        if let projectController = segue.source as? ProjectViewController{
 
-            if let position = positionController.position{
+            if let project = projectController.project{
                 switch navigationType{
-                case .updatePosition:
+                case .updateProject:
                     //Get selected inDexPath
                     if let selectedIndexPath = tableView.indexPathForSelectedRow{
-                        //Update potision
-                        positions[selectedIndexPath.row] = position
+                        //Update project
+                        projects[selectedIndexPath.row] = project
                         //Reload the selected row in the table view
                         tableView.reloadRows(at: [selectedIndexPath], with: .automatic)
                     }
-                case .newPosition:
-                    //new position
-                    positions.append(position)
-                    let newIndexPath = IndexPath(row: positions.count - 1, section: 0)
+                case .newProject:
+                    //new peroject
+                    projects.append(project)
+                    let newIndexPath = IndexPath(row: projects.count - 1, section: 0)
                     tableView.insertRows(at: [newIndexPath], with: .automatic)
                 }
 
@@ -156,18 +154,17 @@ class PositionTableViewController: UITableViewController {
     }
     //Get list Position from Firebase
     func getData() {
-             self.ref.child("position").getData(completion: { error, snapshot in
+             self.ref.child("project").getData(completion: { error, snapshot in
                  if error != nil{
                    print(error!.localizedDescription)
                    return
                  }
                  for child in snapshot!.children.allObjects as! [DataSnapshot] {
                      if let dict = child.value as? [String : AnyObject]{
-                         let code = dict["codePosition"] as? String ?? ""
-                         let name = dict["namePosition"] as? String ?? ""
-                         let count = dict["countPersonnel"] as? Int ?? 0
-                         if let pos = Position(codePosition: code, namePosition: name, countPersonnel: count){
-                             self.positions.append(pos)
+                         let code = dict["codeProject"] as! String
+                         let name = dict["nameProject"] as! String
+                         if let prj = Project(codeProject: code, nameProject: name){
+                             self.projects.append(prj)
                              self.tableView.reloadData()
                          }
                      }
@@ -175,4 +172,5 @@ class PositionTableViewController: UITableViewController {
                  }
              })
     }
+
 }

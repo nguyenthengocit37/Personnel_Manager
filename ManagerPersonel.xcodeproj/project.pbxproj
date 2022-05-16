@@ -16,6 +16,12 @@
 		52514A47282F483A0080F13D /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52514A46282F483A0080F13D /* Project.swift */; };
 		52514A4C282F484B0080F13D /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52514A4B282F484B0080F13D /* Department.swift */; };
 		52514A51282F48590080F13D /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52514A50282F48590080F13D /* Position.swift */; };
+		5252CF8B28328C2B004763FE /* DepartmentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5252CF8A28328C2B004763FE /* DepartmentTableViewController.swift */; };
+		5252CF9328328C4A004763FE /* DepartmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5252CF9228328C4A004763FE /* DepartmentDetailViewController.swift */; };
+		5252CF9928328C9C004763FE /* ProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5252CF9828328C9C004763FE /* ProjectTableViewController.swift */; };
+		5252CFA128328CB6004763FE /* ProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5252CFA028328CB6004763FE /* ProjectViewController.swift */; };
+		5252CFA628328CD9004763FE /* DepartmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5252CFA528328CD9004763FE /* DepartmentTableViewCell.swift */; };
+		5252CFAB28328CF0004763FE /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5252CFAA28328CF0004763FE /* ProjectTableViewCell.swift */; };
 		5258614E282FFD6500380104 /* PersonnelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5258614D282FFD6500380104 /* PersonnelTableViewCell.swift */; };
 		5258616C283003BB00380104 /* PersonnelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5258616B283003BB00380104 /* PersonnelDetailViewController.swift */; };
 		5263901E2823810B00D73315 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263901D2823810B00D73315 /* AppDelegate.swift */; };
@@ -63,6 +69,12 @@
 		52514A46282F483A0080F13D /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		52514A4B282F484B0080F13D /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
 		52514A50282F48590080F13D /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		5252CF8A28328C2B004763FE /* DepartmentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentTableViewController.swift; sourceTree = "<group>"; };
+		5252CF9228328C4A004763FE /* DepartmentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentDetailViewController.swift; sourceTree = "<group>"; };
+		5252CF9828328C9C004763FE /* ProjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewController.swift; sourceTree = "<group>"; };
+		5252CFA028328CB6004763FE /* ProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewController.swift; sourceTree = "<group>"; };
+		5252CFA528328CD9004763FE /* DepartmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentTableViewCell.swift; sourceTree = "<group>"; };
+		5252CFAA28328CF0004763FE /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		5258614D282FFD6500380104 /* PersonnelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonnelTableViewCell.swift; sourceTree = "<group>"; };
 		5258616B283003BB00380104 /* PersonnelDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonnelDetailViewController.swift; sourceTree = "<group>"; };
 		5263901A2823810B00D73315 /* ManagerPersonel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManagerPersonel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,11 +149,31 @@
 			name = Position;
 			sourceTree = "<group>";
 		};
+		5252CF8628328C07004763FE /* Department */ = {
+			isa = PBXGroup;
+			children = (
+				5252CF8A28328C2B004763FE /* DepartmentTableViewController.swift */,
+				5252CF9228328C4A004763FE /* DepartmentDetailViewController.swift */,
+			);
+			path = Department;
+			sourceTree = "<group>";
+		};
+		5252CF9728328C80004763FE /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				5252CF9828328C9C004763FE /* ProjectTableViewController.swift */,
+				5252CFA028328CB6004763FE /* ProjectViewController.swift */,
+			);
+			name = Project;
+			sourceTree = "<group>";
+		};
 		5258614C282FFD4000380104 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
 				5258614D282FFD6500380104 /* PersonnelTableViewCell.swift */,
 				52485BB12831BC4500CCAC1A /* PositionTableViewCell.swift */,
+				5252CFA528328CD9004763FE /* DepartmentTableViewCell.swift */,
+				5252CFAA28328CF0004763FE /* ProjectTableViewCell.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -214,6 +246,8 @@
 		52CC9E59282E5D8C00B72CAF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				5252CF9728328C80004763FE /* Project */,
+				5252CF8628328C07004763FE /* Department */,
 				524A740128323910004DB663 /* Position */,
 				526390212823810B00D73315 /* ViewController.swift */,
 				52AE1A3B282E7900002813F8 /* PersonnelController.swift */,
@@ -487,14 +521,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5252CF9928328C9C004763FE /* ProjectTableViewController.swift in Sources */,
+				5252CFAB28328CF0004763FE /* ProjectTableViewCell.swift in Sources */,
 				52485BCE2831BD5200CCAC1A /* PositionTableViewController.swift in Sources */,
+				5252CF8B28328C2B004763FE /* DepartmentTableViewController.swift in Sources */,
 				5246BCD2282ECE9C00EF9D31 /* Personnel.swift in Sources */,
 				526390222823810B00D73315 /* ViewController.swift in Sources */,
 				52514A4C282F484B0080F13D /* Department.swift in Sources */,
+				5252CF9328328C4A004763FE /* DepartmentDetailViewController.swift in Sources */,
+				5252CFA628328CD9004763FE /* DepartmentTableViewCell.swift in Sources */,
 				52CC9E65282E60C800B72CAF /* LoginController.swift in Sources */,
 				524A740328323946004DB663 /* PositionDetailViewController.swift in Sources */,
 				5258614E282FFD6500380104 /* PersonnelTableViewCell.swift in Sources */,
 				52AE1A3C282E7900002813F8 /* PersonnelController.swift in Sources */,
+				5252CFA128328CB6004763FE /* ProjectViewController.swift in Sources */,
 				5246BCCC282ECB9500EF9D31 /* MainViewController.swift in Sources */,
 				5263901E2823810B00D73315 /* AppDelegate.swift in Sources */,
 				526390202823810B00D73315 /* SceneDelegate.swift in Sources */,
