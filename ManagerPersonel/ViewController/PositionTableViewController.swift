@@ -17,15 +17,35 @@ class PositionTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         ref = Database.database().reference()
-        self.ref.child("position").getData { (error, data) in
-            if error == nil{
-                
-                print("errỏ")
+        ref.child("position").getData(completion: { error, snapshot in
+            if error != nil{
+              print(error!.localizedDescription)
+              return
             }
-            print(data ?? "")
+            for child in snapshot!.children.allObjects as! [DataSnapshot] {
+                let dict = child.value as? [String : AnyObject] ?? [:]
+                print(dict["codePosition"] ?? "")
+            }
+        })
+        if let key = ref.childByAutoId().key{
+            if let positon = Position(codePosition: key, namePosition: "Leader", countPersonnel:5){
+                self.ref.child("position").child(key).setValue([
+                    "codePosition": positon.codePosition,
+                    "namePosition": positon.namePosition,
+                    "countPersonnel" : positon.countPersonnel
+                ])
+                
+            }
         }
-        print("hello")
+       
+        
+        
+       
+        
+        
+        
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -44,18 +64,22 @@ class PositionTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return positions.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "positionTableViewCell", for: indexPath) as? PositionTableViewCell{
+            
+            let position = positions[indexPath.row]
+            cell.txtPositionName.text = position.namePosition
 
-        // Configure the cell...
-
-        return cell
+            return cell
+        }else{
+            fatalError("Khong the tao cell")
+        }
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
