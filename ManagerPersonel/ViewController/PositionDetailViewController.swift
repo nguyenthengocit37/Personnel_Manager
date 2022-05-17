@@ -49,7 +49,7 @@ class PositionDetailViewController: UIViewController {
                     switch navigationType {
                     //Create new Position
                     case .newPosition:
-                        if let id = ref.child("position").childByAutoId().key{
+                        if let id = ref?.child("position").childByAutoId().key{
                                 self.ref.child("position").child(id).setValue([
                                     "codePosition": id,
                                     "namePosition": name,

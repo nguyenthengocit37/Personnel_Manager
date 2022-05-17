@@ -815,7 +815,7 @@
         <!--Department-->
         <scene sceneID="lNf-Se-YOM">
             <objects>
-                <viewController id="wxW-Wp-RsW" sceneMemberID="viewController">
+                <viewController id="wxW-Wp-RsW" customClass="DepartmentDetailViewController" customModule="ManagerPersonel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jO2-FB-TaT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -829,15 +829,17 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập Phòng Ban..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="691-dG-6AV">
+                                    <textField opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập Phòng Ban..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="691-dG-6AV">
                                         <rect key="frame" x="0.0" y="84" width="374" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="name"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="KiD-zJ-6r1" firstAttribute="centerX" secondItem="e8i-QU-6n3" secondAttribute="centerX" id="SAG-OU-dB9"/>
                                     <constraint firstItem="691-dG-6AV" firstAttribute="centerX" secondItem="e8i-QU-6n3" secondAttribute="centerX" id="V5C-OO-lKY"/>
+                                    <constraint firstAttribute="trailing" secondItem="691-dG-6AV" secondAttribute="trailing" id="cgW-jB-k8B"/>
+                                    <constraint firstItem="691-dG-6AV" firstAttribute="leading" secondItem="e8i-QU-6n3" secondAttribute="leading" id="ju0-Qa-gqq"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -853,44 +855,61 @@
                         <barButtonItem key="leftBarButtonItem" id="vnA-6m-mvI">
                             <imageReference key="image" image="arrow.turn.up.left" catalog="system" renderingMode="template"/>
                             <color key="tintColor" systemColor="systemRedColor"/>
+                            <connections>
+                                <action selector="handleCancel:" destination="wxW-Wp-RsW" id="KSW-v7-U5h"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="MdV-A5-wLh">
                             <color key="tintColor" systemColor="systemRedColor"/>
+                            <connections>
+                                <segue destination="NE2-td-vaO" kind="unwind" unwindAction="unWindFromDepartmentDetailControllerWithSegue:" id="zcu-vQ-kyW"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="btnSave" destination="MdV-A5-wLh" id="e4j-lP-Z4I"/>
+                        <outlet property="tfDepartment" destination="691-dG-6AV" id="XlM-fO-4x8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7kB-xS-VVt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="NE2-td-vaO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4300" y="2441"/>
         </scene>
         <!--Deperment-->
         <scene sceneID="JoU-JF-LH2">
             <objects>
-                <tableViewController id="JU5-Xm-OJZ" sceneMemberID="viewController">
+                <tableViewController id="JU5-Xm-OJZ" customClass="DepartmentTableViewController" customModule="ManagerPersonel" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pLA-lv-G04">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="departmentTableViewCell" id="4dK-m8-nlc" customClass="DepartmentTableViewCell" customModule="ManagerPersonel" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="44.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4dK-m8-nlc" id="ms1-g3-qLy">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44.333332061767578"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Kinh doanh" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gHT-R3-LPj">
-                                            <rect key="frame" x="161" y="11" width="99" height="24"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kinh doanh" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gHT-R3-LPj">
+                                            <rect key="frame" x="20" y="9.9999999999999982" width="374" height="24.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="gHT-R3-LPj" firstAttribute="top" secondItem="ms1-g3-qLy" secondAttribute="top" constant="10" id="JRw-UP-P4I"/>
+                                        <constraint firstItem="gHT-R3-LPj" firstAttribute="centerX" secondItem="ms1-g3-qLy" secondAttribute="centerX" id="MUO-dn-qQG"/>
+                                        <constraint firstAttribute="trailing" secondItem="gHT-R3-LPj" secondAttribute="trailing" constant="20" id="Rv0-pb-Hr6"/>
+                                        <constraint firstAttribute="bottom" secondItem="gHT-R3-LPj" secondAttribute="bottom" constant="10" id="XT9-Bi-dqd"/>
+                                        <constraint firstItem="gHT-R3-LPj" firstAttribute="leading" secondItem="ms1-g3-qLy" secondAttribute="leading" constant="20" id="i2o-22-Jdx"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="txtDeparmentName" destination="gHT-R3-LPj" id="q7i-z8-LQb"/>
-                                    <segue destination="wxW-Wp-RsW" kind="show" id="aWm-Fw-bjy"/>
+                                    <segue destination="wxW-Wp-RsW" kind="show" identifier="updateDepartment" id="aWm-Fw-bjy"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -903,14 +922,14 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="h0y-8O-Z2M">
                             <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
-                                <segue destination="4sN-U1-1fC" kind="presentation" id="Lto-Nf-HVY"/>
+                                <segue destination="4sN-U1-1fC" kind="presentation" identifier="newDepartment" id="Lto-Nf-HVY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sT5-Qo-Mg1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3575" y="1573"/>
+            <point key="canvasLocation" x="3573.913043478261" y="1572.9910714285713"/>
         </scene>
         <!--Position-->
         <scene sceneID="JwL-ab-bue">
@@ -1127,7 +1146,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Pc7-CF-Ajh"/>
-        <segue reference="azw-fB-s4u"/>
+        <segue reference="aWm-Fw-bjy"/>
         <segue reference="11z-3A-UaP"/>
     </inferredMetricsTieBreakers>
     <resources>
