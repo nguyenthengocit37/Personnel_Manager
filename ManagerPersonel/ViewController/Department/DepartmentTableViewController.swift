@@ -23,7 +23,7 @@ class DepartmentTableViewController: UITableViewController {
         super.viewDidLoad()
         //Get Url FireBase
         ref = Database.database().reference()
-        //Get list Data
+        //Get list Dat
         getData()
         
         // Uncomment the following line to preserve selection between presentations
