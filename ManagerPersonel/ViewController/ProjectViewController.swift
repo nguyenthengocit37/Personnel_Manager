@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseDatabase
 
-class ProjectViewController: UIViewController {
+class ProjectViewController: UIViewController,UITextFieldDelegate {
     //MARK: Properties
     var ref: DatabaseReference!
     @IBOutlet weak var tfProject: UITextField!
@@ -27,6 +27,9 @@ class ProjectViewController: UIViewController {
         //Get Url FireBase
         ref = Database.database().reference()
 
+        //Delegation of the TextField Object
+        tfProject.delegate = self
+        
         //Get the edit position from PositionTableView
         if let project = self.project{
             navigationItem.title = project.nameProject
@@ -34,7 +37,14 @@ class ProjectViewController: UIViewController {
         }
     }
     
-
+    //MARK: TextField's Delegate Functions
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        tfProject.resignFirstResponder()
+            return true
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        navigationItem.title = tfProject.text
+    }
     
     // MARK: - Navigation
 

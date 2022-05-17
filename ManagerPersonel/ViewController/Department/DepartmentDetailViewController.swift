@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseDatabase
 
-class DepartmentDetailViewController: UIViewController {
+class DepartmentDetailViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var tfDepartment: UITextField!
     @IBOutlet weak var btnSave: UIBarButtonItem!
     
@@ -27,6 +27,8 @@ class DepartmentDetailViewController: UIViewController {
         //Get Url FireBase
         ref = Database.database().reference()
         
+        //Delegation of the TextField Object
+        tfDepartment.delegate = self
         
         //Get the edit department from DepartmentTableView
         if let department = self.department{
@@ -35,8 +37,14 @@ class DepartmentDetailViewController: UIViewController {
         }
     }
     
-
-    
+    //MARK: TextField's Delegate Functions
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            tfDepartment.resignFirstResponder()
+            return true
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        navigationItem.title = tfDepartment.text
+    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

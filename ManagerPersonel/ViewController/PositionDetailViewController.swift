@@ -9,8 +9,8 @@ import UIKit
 import FirebaseDatabase
 import Toast_Swift
 
-class PositionDetailViewController: UIViewController {
-
+class PositionDetailViewController: UIViewController,UITextFieldDelegate {
+    //MARK: Properties
     @IBOutlet weak var tfPosition: UITextField!
     @IBOutlet weak var btnSave: UIBarButtonItem!
     var ref: DatabaseReference!
@@ -27,7 +27,10 @@ class PositionDetailViewController: UIViewController {
         super.viewDidLoad()
         //Get Url FireBase
         ref = Database.database().reference()
-
+        
+        //Delegation of the TextField Object
+        tfPosition.delegate = self
+        
         //Get the edit position from PositionTableView
         if let position = self.position{
             navigationItem.title = position.namePosition
@@ -37,7 +40,14 @@ class PositionDetailViewController: UIViewController {
        
     }
     
-
+    //MARK: TextField's Delegate Functions
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            tfPosition.resignFirstResponder()
+            return true
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        navigationItem.title = tfPosition.text
+    }
     
     // MARK: - Navigation
 
