@@ -14,14 +14,14 @@ class Personnel{
     var personnelBirthday:Date
     var personnelGender:Bool
     var codeProject:String
-    var codePosition:Int
-    var codeDerpartment:String
+    var codePosition:String
+    var codeDepartment:String
     var personnelImage: UIImage?
     
     //MARK: Contructor
-    init?(personnelCode:String,personnelName: String,personnelBirthday: Date, personnelGender: Bool,codeProject: String,codePosition: Int,codeDerpartment: String,personnelImage: UIImage?)
+    init?(personnelCode:String,personnelName: String,personnelBirthday: Date, personnelGender: Bool,codeProject: String,codePosition: String,codeDepartment: String,personnelImage: UIImage?)
     {
-        if personnelCode.isEmpty||personnelName.isEmpty || codeProject.isEmpty || codeDerpartment.isEmpty{
+        if personnelCode.isEmpty||personnelName.isEmpty || codeProject.isEmpty || codeDepartment.isEmpty{
             return nil
         }
         self .personnelCode = personnelCode
@@ -30,7 +30,7 @@ class Personnel{
         self .personnelGender = personnelGender
         self .codeProject = codeProject
         self .codePosition = codePosition
-        self .codeDerpartment = codeDerpartment
+        self .codeDepartment = codeDepartment
         self .personnelImage = personnelImage
     }
 }

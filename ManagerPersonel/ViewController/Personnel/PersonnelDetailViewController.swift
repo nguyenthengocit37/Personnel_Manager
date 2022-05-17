@@ -58,7 +58,7 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
             }else{
                 segGender.selectedSegmentIndex = 1
             }
-            lblPosition.text = arrPosition[personnel.codePosition]
+            lblPosition.text = personnel.codePosition
             //...
         }
     }

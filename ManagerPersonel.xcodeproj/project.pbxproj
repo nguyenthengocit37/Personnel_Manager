@@ -140,6 +140,14 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		52474681283387DD00AE57DB /* Personnel */ = {
+			isa = PBXGroup;
+			children = (
+				5258616B283003BB00380104 /* PersonnelDetailViewController.swift */,
+			);
+			path = Personnel;
+			sourceTree = "<group>";
+		};
 		524A740128323910004DB663 /* Position */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +254,7 @@
 		52CC9E59282E5D8C00B72CAF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				52474681283387DD00AE57DB /* Personnel */,
 				5252CF9728328C80004763FE /* Project */,
 				5252CF8628328C07004763FE /* Department */,
 				524A740128323910004DB663 /* Position */,
@@ -253,7 +262,6 @@
 				52AE1A3B282E7900002813F8 /* PersonnelController.swift */,
 				52CC9E64282E60C800B72CAF /* LoginController.swift */,
 				5246BCCB282ECB9500EF9D31 /* MainViewController.swift */,
-				5258616B283003BB00380104 /* PersonnelDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

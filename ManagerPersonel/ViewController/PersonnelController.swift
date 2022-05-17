@@ -6,30 +6,33 @@
 //
 
 import UIKit
+import Firebase
 
 class PersonnelController: UITableViewController {
     //MARK: Properties
     var personnels = [Personnel]()
+    var ref: DatabaseReference!
+    
+    enum NavigationType{
+        case newPersonnel
+        case updatePersonnel
+    }
+    var navigationType:NavigationType = .newPersonnel
+    
+    var department : Department?
+    var position : Position?
+    var project : Project?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        //Create Personnel
-//        let dateNow = Date()
-//        let avt = UIImage(named:"male")
-//        if let personnel = Personnel(personnelName: "Nguyen The Ngoc", personnelBirthday: dateNow , personnelGender: true, codeProject: "pj1", codePosition: 1, codeDerpartment: "Kinh doanh", personnelImage: avt){
-//            personnels.append(personnel)
-//        }
+        //Get Url FireBase
+        ref = Database.database().reference()
+        //Get list Data
+        getData()
         
         //Add the edit button into the navigation bar
         navigationItem.leftBarButtonItem = editButtonItem
-       navigationItem.leftBarButtonItem?.tintColor = .systemRed
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        navigationItem.leftBarButtonItem?.tintColor = .systemRed
     }
 
     // MARK: - Table view data source
@@ -49,11 +52,13 @@ class PersonnelController: UITableViewController {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "personnelTableViewCell", for: indexPath) as? PersonnelTableViewCell{
             let personnel = personnels[indexPath.row]
             cell.tfName.text = personnel.personnelName
-            cell.tfProject.text = personnel.codeProject
-            cell.tfPosition.text = String(personnel.codePosition)
-            cell.tfDepartment.text = personnel.codeDerpartment
+//            getProject(id:personnel.codeProject)
+//            getDepartment(id:personnel.codeDepartment)
+//            getPosition(id:personnel.codePosition)
+            cell.tfProject.text = project?.nameProject ?? "Chưa có"
+            cell.tfPosition.text = position?.namePosition ?? "Chưa có"
+            cell.tfDepartment.text = department?.nameDepartment ?? "Chưa có"
             cell.imgAvt.image = personnel.personnelImage
-            
             return cell
             
         }else{
@@ -108,5 +113,105 @@ class PersonnelController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    //Get Department for Personnel
+    func getDepartment(id:String){
+        self.ref.child("department").child(id).getData(completion: { error, snapshot in
+            if error != nil{
+              print(error!.localizedDescription)
+              return
+            }
+            for child in snapshot!.children.allObjects as! [DataSnapshot] {
+                if let dict = child.value as? [String : AnyObject]{
+                    let code = dict["codeDepartment"] as? String ?? ""
+                    let name = dict["nameDepartment"] as? String ?? ""
+                    if let department = Department(codeDepartment: code, nameDepartment: name){
+                        self.department = department
+                    }
+                }
+                
+            }
+        })
+    }
+    //Get Project for Personnel
+    func getProject(id:String){
+        self.ref.child("project").child(id).getData(completion: { error, snapshot in
+            if error != nil{
+              print(error!.localizedDescription)
+              return
+            }
+//            if let userName = snapshot!.value as? AnyObject{
+//                print(userName["codeProject"]! ?? "")
+//            }
+          
+            for child in snapshot!.children.allObjects as! [DataSnapshot] {
+                if let dict = child.value as?  AnyObject{
+                    
+                    let code = dict["codeProject"] as! String
+                    let name = dict["nameProject"] as! String
+                    print(code)
+                    if let project = Project(codeProject: code, nameProject: name){
+                        self.project = project
+                    }
+                }
+                
+            }
+        })
+    }
+    //Get Project for Personnel
+    func getPosition(id:String){
+        self.ref.child("position").child(id).getData(completion: { error, snapshot in
+            if error != nil{
+              print(error!.localizedDescription)
+              return
+            }
+            for child in snapshot!.children.allObjects as! [DataSnapshot] {
+                if let dict = child.value as? [String : AnyObject]{
+                    let code = dict["codePosition"] as? String ?? ""
+                    let name = dict["namePosition"] as? String ?? ""
+                    let count = dict["countPersonnel"] as? Int ?? 0
+                    if let pos = Position(codePosition: code, namePosition: name, countPersonnel: count){
+                        self.position = pos
+                    }
+                }
+                
+            }
+        })
+    }
+    //Get list Position from Firebase
+    func getData() {
+             self.ref.child("personnel").getData(completion: { error, snapshot in
+                 if error != nil{
+                   print(error!.localizedDescription)
+                   return
+                 }
+                 for child in snapshot!.children.allObjects as! [DataSnapshot] {
+                     if let dict = child.value as? [String : AnyObject]{
+                        
+                        let code = dict["personnelCode"] as! String
+                        let name = dict["personnelName"] as! String
+                        let image = dict["personnelImage"] as! String
+                        let gender = dict["personnelGender"] as! Bool
+                        let birthDay = dict["personnelBirthday"] as! String
+                        let codeProject = dict["codeProject"] as! String
+                        let codePosition = dict["codePosition"] as! String
+                        let codeDepartment = dict["codeDepartment"] as! String
+                        //Get Avatar Image
+                        let avt = UIImage(named:image)
+                        //Create Date Formatter
+                        let dateFormatter = DateFormatter()
+                        //Type Formatter
+                        dateFormatter.dateFormat = "dd/MM/yy"
+                        let date = dateFormatter.date(from: birthDay)!
+                        //Create Personnel
+                        if let personnel = Personnel(personnelCode:code,personnelName: name,personnelBirthday: date, personnelGender: gender,codeProject: codeProject,codePosition: codePosition,codeDepartment: codeDepartment,personnelImage:avt){
+                                self.personnels.append(personnel)
+                                self.tableView.reloadData()
+
+                        }
+                     }
+                     
+                 }
+             })
+    }
 
 }
