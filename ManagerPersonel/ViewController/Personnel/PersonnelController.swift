@@ -50,15 +50,15 @@ class PersonnelController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "personnelTableViewCell", for: indexPath) as? PersonnelTableViewCell{
+            //Get current personnel
             let personnel = personnels[indexPath.row]
+            
             cell.tfName.text = personnel.personnelName
-//            getProject(id:personnel.codeProject)
-//            getDepartment(id:personnel.codeDepartment)
-//            getPosition(id:personnel.codePosition)
-            cell.tfProject.text = project?.nameProject ?? "Chưa có"
-            cell.tfPosition.text = position?.namePosition ?? "Chưa có"
-            cell.tfDepartment.text = department?.nameDepartment ?? "Chưa có"
+            getProject(id:personnel.codeProject,label:cell.tfProject)
+            getDepartment(id:personnel.codeDepartment,label: cell.tfDepartment)
+            getPosition(id:personnel.codePosition,label:  cell.tfPosition)
             cell.imgAvt.image = personnel.personnelImage
+            
             return cell
             
         }else{
@@ -114,66 +114,56 @@ class PersonnelController: UITableViewController {
     }
     */
     //Get Department for Personnel
-    func getDepartment(id:String){
+    func getDepartment(id:String,label:UILabel){
         self.ref.child("department").child(id).getData(completion: { error, snapshot in
             if error != nil{
               print(error!.localizedDescription)
               return
             }
-            for child in snapshot!.children.allObjects as! [DataSnapshot] {
-                if let dict = child.value as? [String : AnyObject]{
+                if let dict = snapshot!.value as? [String : AnyObject]{
                     let code = dict["codeDepartment"] as? String ?? ""
                     let name = dict["nameDepartment"] as? String ?? ""
                     if let department = Department(codeDepartment: code, nameDepartment: name){
                         self.department = department
+                        label.text = name
                     }
-                }
+                
                 
             }
         })
     }
     //Get Project for Personnel
-    func getProject(id:String){
+    func getProject(id:String,label:UILabel){
         self.ref.child("project").child(id).getData(completion: { error, snapshot in
             if error != nil{
               print(error!.localizedDescription)
               return
             }
-//            if let userName = snapshot!.value as? AnyObject{
-//                print(userName["codeProject"]! ?? "")
-//            }
-          
-            for child in snapshot!.children.allObjects as! [DataSnapshot] {
-                if let dict = child.value as?  AnyObject{
-                    
+            if let dict = snapshot!.value as? [String:AnyObject]{
                     let code = dict["codeProject"] as! String
                     let name = dict["nameProject"] as! String
-                    print(code)
                     if let project = Project(codeProject: code, nameProject: name){
                         self.project = project
+                        label.text = name
                     }
                 }
-                
-            }
         })
     }
     //Get Project for Personnel
-    func getPosition(id:String){
+    func getPosition(id:String,label:UILabel){
         self.ref.child("position").child(id).getData(completion: { error, snapshot in
             if error != nil{
               print(error!.localizedDescription)
               return
             }
-            for child in snapshot!.children.allObjects as! [DataSnapshot] {
-                if let dict = child.value as? [String : AnyObject]{
+                if let dict = snapshot!.value as? [String : AnyObject]{
                     let code = dict["codePosition"] as? String ?? ""
                     let name = dict["namePosition"] as? String ?? ""
                     let count = dict["countPersonnel"] as? Int ?? 0
                     if let pos = Position(codePosition: code, namePosition: name, countPersonnel: count){
                         self.position = pos
+                        label.text = name
                     }
-                }
-                
             }
         })
     }
@@ -189,7 +179,7 @@ class PersonnelController: UITableViewController {
                         
                         let code = dict["personnelCode"] as! String
                         let name = dict["personnelName"] as! String
-                        let image = dict["personnelImage"] as! String
+                        let image = dict["personnelImage"] as? String ?? "male"
                         let gender = dict["personnelGender"] as! Bool
                         let birthDay = dict["personnelBirthday"] as! String
                         let codeProject = dict["codeProject"] as! String
