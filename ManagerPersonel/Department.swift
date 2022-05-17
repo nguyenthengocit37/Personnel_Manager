@@ -16,7 +16,7 @@ class Department{
             return nil
         }
         self .codeDepartment = codeDepartment
-        self .nameDepartment = nameDepartmen
+        self .nameDepartment = nameDepartment
     }
     
 }
