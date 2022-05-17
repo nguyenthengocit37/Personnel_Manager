@@ -13,7 +13,7 @@ class DepartmentTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization cod
+        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
