@@ -80,7 +80,7 @@ class DepartmentDetailViewController: UIViewController,UITextFieldDelegate {
     }
     //Handle Cancel
     @IBAction func handleCancel(_ sender: UIBarButtonItem) {
-        switch navigationTyp {
+        switch navigationType {
         case .newDepartment:
             dismiss(animated: true, completion: nil)
         case .updateDeparment:
