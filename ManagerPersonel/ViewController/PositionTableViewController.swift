@@ -26,12 +26,11 @@ class PositionTableViewController: UITableViewController {
         ref = Database.database().reference()
         //Get list Data
         getData()
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         self.navigationItem.leftBarButtonItem = self.editButtonItem
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
         self.navigationItem.leftBarButtonItem?.tintColor = .systemRed
     }
 
@@ -128,7 +127,7 @@ class PositionTableViewController: UITableViewController {
                 }
             default: break
             }
-                }
+        }
     }
     
     @IBAction func unWindFromPositionDetailController(segue:UIStoryboardSegue){
@@ -155,7 +154,7 @@ class PositionTableViewController: UITableViewController {
         }
     }
     //Get list Position from Firebase
-    func getData() {
+    func getData(){
              self.ref.child("position").getData(completion: { error, snapshot in
                  if error != nil{
                    print(error!.localizedDescription)
@@ -167,8 +166,8 @@ class PositionTableViewController: UITableViewController {
                          let name = dict["namePosition"] as? String ?? ""
                          let count = dict["countPersonnel"] as? Int ?? 0
                          if let pos = Position(codePosition: code, namePosition: name, countPersonnel: count){
-                             self.positions.append(pos)
-                             self.tableView.reloadData()
+                            self.positions.append(pos)
+                            self.tableView.reloadData()
                          }
                      }
                      

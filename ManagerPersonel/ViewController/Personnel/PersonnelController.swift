@@ -80,6 +80,8 @@ class PersonnelController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             //Delete from data source
+            let key = personnels[indexPath.row].personnelCode
+            self.ref.child("personnel").child(key).removeValue()
             personnels.remove(at: indexPath.row)
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -104,15 +106,60 @@ class PersonnelController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        //Indentifying new Position or update Position
+        if let idenfifier = segue.identifier{
+            switch idenfifier {
+            case "newPersonnel":
+                navigationType = .newPersonnel
+                
+                if let destinationController = segue.destination as? PersonnelDetailViewController {
+                    destinationController.navigationType = .newPersonnel
+                        }
+            case "updatePersonnel":
+                navigationType = .updatePersonnel
+                if let selectedIndexPath = tableView.indexPathForSelectedRow{
+                    let selectedRow = selectedIndexPath.row
+                    let selectedPersonnel = personnels[selectedRow]
+                    //Get the destination controller
+                    if let destinationController = segue.destination as? PersonnelDetailViewController {
+                        destinationController.personnel = selectedPersonnel
+                        destinationController.navigationType = .updatePersonnel
+                        }
+                    }
+            default: break
+            }
+        }
     }
-    */
+    
+    @IBAction func unWindFromPorsonnelDetailController(segue:UIStoryboardSegue){
+        if let personnelController = segue.source as? PersonnelDetailViewController{
+
+            if let personnel = personnelController.personnel{
+                switch navigationType{
+                case .updatePersonnel:
+                    //Get selected inDexPath
+                    if let selectedIndexPath = tableView.indexPathForSelectedRow{
+                        //Update personnel
+                        personnels[selectedIndexPath.row] = personnel
+                        //Reload the selected row in the table view
+                        tableView.reloadRows(at: [selectedIndexPath], with: .automatic)
+                    }
+                case .newPersonnel:
+                    //Create new personnel
+                    personnels.append(personnel)
+                    let newIndexPath = IndexPath(row: personnels.count - 1, section: 0)
+                    tableView.insertRows(at: [newIndexPath], with: .automatic)
+                }
+
+            }
+        }
+    }
+    
     //Get Department for Personnel
     func getDepartment(id:String,label:UILabel){
         self.ref.child("department").child(id).getData(completion: { error, snapshot in
@@ -140,8 +187,8 @@ class PersonnelController: UITableViewController {
               return
             }
             if let dict = snapshot!.value as? [String:AnyObject]{
-                    let code = dict["codeProject"] as! String
-                    let name = dict["nameProject"] as! String
+                    let code = dict["codeProject"] as? String ?? ""
+                    let name = dict["nameProject"] as? String ?? ""
                     if let project = Project(codeProject: code, nameProject: name){
                         self.project = project
                         label.text = name

@@ -19,19 +19,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="KRL-R8-3Fn">
-                                <rect key="frame" x="20" y="44" width="374" height="489"/>
+                                <rect key="frame" x="20" y="44.000000000000028" width="374" height="488.66666666666674"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FNs-c4-IOo">
-                                        <rect key="frame" x="37" y="0.0" width="300" height="167"/>
+                                        <rect key="frame" x="37" y="0.0" width="300" height="166.66666666666666"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="9dp-Wc-uW0">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="167"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="166.66666666666666"/>
                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                                             </imageView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uHd-8n-W8L">
-                                        <rect key="frame" x="37" y="172" width="300" height="317"/>
+                                        <rect key="frame" x="37" y="171.66666666666663" width="300" height="317"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="70" translatesAutoresizingMaskIntoConstraints="NO" id="beV-Lc-7lN">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="317"/>
@@ -55,7 +55,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="R7R-rd-wOk">
-                                                        <rect key="frame" x="0.0" y="130" width="300" height="187"/>
+                                                        <rect key="frame" x="0.0" y="130.00000000000003" width="300" height="186.99999999999997"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="lVc-Rq-otJ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="107"/>
@@ -516,6 +516,7 @@
                                     <outlet property="tfName" destination="p8Y-Wx-lky" id="5fa-BU-okF"/>
                                     <outlet property="tfPosition" destination="wec-io-DdF" id="ZRD-Mh-ZoK"/>
                                     <outlet property="tfProject" destination="OX6-C0-Y9n" id="w4V-Ei-CJu"/>
+                                    <segue destination="xbT-uL-K7b" kind="show" identifier="updatePersonnel" id="mi5-i4-lJw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -531,7 +532,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="3e6-VT-kiE">
                             <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
-                                <segue destination="DWM-T0-WiZ" kind="presentation" id="CM4-an-pxt"/>
+                                <segue destination="DWM-T0-WiZ" kind="presentation" identifier="newPersonnel" id="CM4-an-pxt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -543,7 +544,7 @@
         <!--Detail-->
         <scene sceneID="jTd-LZ-kZP">
             <objects>
-                <viewController id="xbT-uL-K7b" customClass="PersonnelDetailViewController" customModule="ManagerPersonel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="xbT-uL-K7b" customClass="PersonnelDetailViewController" customModule="ManagerPersonel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Uey-LI-On9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1177,6 +1178,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Pc7-CF-Ajh"/>
         <segue reference="aWm-Fw-bjy"/>
+        <segue reference="mi5-i4-lJw"/>
         <segue reference="11z-3A-UaP"/>
     </inferredMetricsTieBreakers>
     <resources>

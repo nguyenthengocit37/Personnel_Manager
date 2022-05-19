@@ -9,7 +9,7 @@ import UIKit
 import FirebaseDatabase
 
 class ProjectTableViewController: UITableViewController {
-    //Mark:Propeties
+    //MARK: Propeties
     var projects = [Project]()
     var ref: DatabaseReference!
     

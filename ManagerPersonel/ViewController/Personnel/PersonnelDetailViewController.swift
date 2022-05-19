@@ -7,6 +7,7 @@
 
 import UIKit
 import DropDown
+import FirebaseDatabase
 
 class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -15,7 +16,7 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
     let ddDepartment = DropDown()
     let ddPosition = DropDown()
     let ddProject = DropDown()
-    
+    var ref: DatabaseReference!
     @IBOutlet weak var imgAvatar: UIImageView!
     @IBOutlet weak var tfName: UITextField!
     @IBOutlet weak var segGender: UISegmentedControl!
@@ -37,18 +38,26 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
     var navigationType:NavigationType = .newPersonnel
     
     var personnel:Personnel?
+    var positions = [Position]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Get Url FireBase
+        ref = Database.database().reference()
         
+        //Delegation of the TextField Object
+        tfName.delegate = self
         //Create Dropdown list derpartment
-        let arrDeparment = ["Car", "Motorcycle", "Truck"]
-        let arrProject = ["Quan Ly Hoc Sinh","Quan Ly Thu Vien"]
-        let arrPosition = ["Nhan vien", "Leader", "Truong Phong"]
-        dropList(dropDown : ddDepartment,listItem: arrDeparment, lblItem: self.lblDepartment,uiView: uvListDeparment)
-        dropList(dropDown : ddProject,listItem: arrProject, lblItem: self.lblProject,uiView: uvListProject)
-        dropList(dropDown : ddPosition,listItem: arrPosition, lblItem: self.lblPosition,uiView: uvListPosition)
+//        let arrDeparment = ["Car", "Motorcycle", "Truck"]
+//        let arrProject = ["Quan Ly Hoc Sinh","Quan Ly Thu Vien"]
+//        let arrPosition = ["Nhan vien", "Leader", "Truong Phong"]
+        getListPosition()
+        createDropList()
+//        dropList(dropDown : ddDepartment,listItem: arrDeparment, lblItem: self.lblDepartment,uiView: uvListDeparment)
+//        dropList(dropDown : ddProject,listItem: arrProject, lblItem: self.lblProject,uiView: uvListProject)
         
+//
+//   dropList(dropDown : self.ddPosition,listItem:self.createDropList(), lblItem: self.lblPosition,uiView: uvListPosition)
         //Get personnel from PersonnelViewCell
         if let personnel = self.personnel{
             navigationItem.title = personnel.personnelName
@@ -58,9 +67,16 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
             }else{
                 segGender.selectedSegmentIndex = 1
             }
-            lblPosition.text = personnel.codePosition
             //...
         }
+    }
+    //MARK: TextField's Delegate Functions
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            tfName.resignFirstResponder()
+            return true
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        navigationItem.title = tfName.text
     }
     //Handle show list
     @IBAction func btnShowDepartment(_ sender: Any) {
@@ -105,13 +121,56 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let btnSender = sender as? UIBarButtonItem{
             if btnSender == btnSave{
-                
+                let name = tfName.text ?? ""
+                switch navigationType {
+                //Create new Position
+                case .newPersonnel:
+//                    if let id = ref?.child("personnel").childByAutoId().key{
+//                            self.ref.child("personnel").child(id).setValue([
+//                                "personnelCode": id,
+//                                "personnelCode": name,
+//                                "countPersonnel" : 0,
+//                            ])
+//
+//                    }
+                    break
+                //Update Position
+                case .updatePersonnel :
+                    if let key = personnel?.personnelCode {
+//                        position!.namePosition = name
+//                        let pos = ["codePosition": position!.codePosition,
+//                                   "namePosition": position!.namePosition,
+//                                   "countPersonnel": position!.countPersonnel] as [String : Any]
+//                        let childUpdate = ["/position/\(key)" : pos]
+//                        self.ref.updateChildValues(childUpdate)
+                        
+                    }
+                }
             }
         }
     }
-    
-    
-    func dropList(dropDown : DropDown,listItem : [String], lblItem : UILabel,uiView : UIView ){
+    //Handle Cancel
+    @IBAction func handleCancel(_ sender: UIBarButtonItem) {
+        switch navigationType {
+        case .newPersonnel:
+            dismiss(animated: true, completion: nil)
+        case .updatePersonnel:
+            if let navigationController = navigationController{
+                navigationController.popViewController(animated: true)
+            }
+        }
+    }
+    //Handle create droplist
+    private func createDropList(){
+        var positionNames = [String]()
+        for item in self.positions {
+            positionNames.append(item.namePosition)
+            print(item.namePosition)
+        }
+        dropList(dropDown: self.ddPosition, listItem: positionNames, lblItem: lblPosition, uiView: uvListPosition)
+    }
+    //Create List Dropdown
+    private func dropList(dropDown : DropDown,listItem : [String], lblItem : UILabel,uiView : UIView ){
         dropDown.anchorView = uiView
         dropDown.dataSource = listItem
         dropDown.dismissMode = .onTap
@@ -122,5 +181,28 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
         }
         // Will set a custom width instead of the anchor view width
         dropDown.width = 200
+    }
+    //Get list Position from Firebase
+    private func getListPosition(){
+             self.ref.child("position").getData(completion: { error, snapshot in
+                 if error != nil{
+                   print(error!.localizedDescription)
+                   return
+                 }
+                 for child in snapshot!.children.allObjects as! [DataSnapshot] {
+                     if let dict = child.value as? [String : AnyObject]{
+                         let code = dict["codePosition"] as? String ?? ""
+                         let name = dict["namePosition"] as? String ?? ""
+                         let count = dict["countPersonnel"] as? Int ?? 0
+                         if let pos = Position(codePosition: code, namePosition: name, countPersonnel: count){
+                            self.positions.append(pos)
+                         }
+                     }else{
+                        print("Loi khi lay du lieu")
+                     }
+                     
+                 }
+                self.createDropList()
+             })
     }
 }
