@@ -39,7 +39,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="n0U-Hg-xgQ">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctN-MT-Pba">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đăng nhập" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctN-MT-Pba">
                                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="lUu-Xq-KLS"/>
@@ -60,7 +60,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="lVc-Rq-otJ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="107"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kC6-sg-9JB">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập email..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kC6-sg-9JB">
                                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="40"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="40" id="FAJ-Zv-tbI"/>
@@ -68,7 +68,7 @@
                                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                         <textInputTraits key="textInputTraits" textContentType="email"/>
                                                                     </textField>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aZT-xy-iuS">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập mật khẩu..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aZT-xy-iuS">
                                                                         <rect key="frame" x="0.0" y="67" width="300" height="40"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="40" id="eVW-k6-OE7"/>
@@ -91,7 +91,7 @@
                                                                             <constraint firstAttribute="width" constant="120" id="ung-z3-NzW"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
-                                                                        <state key="normal" title="Sign In">
+                                                                        <state key="normal" title="Đăng Nhập">
                                                                             <color key="titleColor" systemColor="tertiarySystemBackgroundColor"/>
                                                                         </state>
                                                                         <connections>
@@ -164,7 +164,7 @@
             </objects>
             <point key="canvasLocation" x="-1080" y="1"/>
         </scene>
-        <!--Project-->
+        <!--Dự Án-->
         <scene sceneID="Lec-zY-ZP9">
             <objects>
                 <tableViewController id="NiB-2Y-U69" customClass="ProjectTableViewController" customModule="ManagerPersonel" customModuleProvider="target" sceneMemberID="viewController">
@@ -203,7 +203,7 @@
                             <outlet property="delegate" destination="NiB-2Y-U69" id="Lt1-dX-BFn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Project" id="HaI-Cj-EFc">
+                    <navigationItem key="navigationItem" title="Dự Án" id="HaI-Cj-EFc">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="QTH-UZ-KGG">
                             <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
@@ -216,7 +216,7 @@
             </objects>
             <point key="canvasLocation" x="390" y="1573"/>
         </scene>
-        <!--Position-->
+        <!--Chức Vụ-->
         <scene sceneID="IRz-hy-Um3">
             <objects>
                 <tableViewController id="qix-mT-jth" customClass="PositionTableViewController" customModule="ManagerPersonel" customModuleProvider="target" sceneMemberID="viewController">
@@ -255,7 +255,7 @@
                             <outlet property="delegate" destination="qix-mT-jth" id="BLY-Zt-7TV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Position" id="aYP-CJ-iH0">
+                    <navigationItem key="navigationItem" title="Chức Vụ" id="aYP-CJ-iH0">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="5n4-Ve-eTp">
                             <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
@@ -285,7 +285,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập chức vụ....." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iOC-pD-Oa9">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập tên chức vụ....." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iOC-pD-Oa9">
                                         <rect key="frame" x="20" y="64" width="334" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -358,7 +358,7 @@
             </objects>
             <point key="canvasLocation" x="-113.04347826086958" y="0.6696428571428571"/>
         </scene>
-        <!--Personnel-->
+        <!--Nhân Sự-->
         <scene sceneID="G2G-it-r8Y">
             <objects>
                 <tableViewController storyboardIdentifier="personnel" id="FyP-J8-Ydt" customClass="PersonnelController" customModule="ManagerPersonel" customModuleProvider="target" sceneMemberID="viewController">
@@ -410,7 +410,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Bqi-Sb-8fb">
                                                             <rect key="frame" x="0.0" y="32.333333333333329" width="289" height="32.333333333333329"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chuc Vu :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtL-y6-mzM">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chức Vụ :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtL-y6-mzM">
                                                                     <rect key="frame" x="0.0" y="0.0" width="84.333333333333329" height="32.333333333333336"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="84.329999999999998" id="ttS-IF-hmM"/>
@@ -438,7 +438,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ERa-Eu-Qzr">
                                                             <rect key="frame" x="0.0" y="64.666666666666671" width="289" height="32"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phong Ban:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhp-Y6-aQW">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phòng Ban :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhp-Y6-aQW">
                                                                     <rect key="frame" x="0.0" y="0.0" width="110" height="32"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="110" id="PBg-5S-93X"/>
@@ -466,7 +466,7 @@
                                                         <stackView opaque="NO" contentMode="left" translatesAutoresizingMaskIntoConstraints="NO" id="IYC-lL-CwK">
                                                             <rect key="frame" x="0.0" y="96.666666666666671" width="289" height="32.333333333333329"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Du An :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJ3-hg-BEQ">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dự Án :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJ3-hg-BEQ">
                                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="32.333333333333336"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="80" id="kEA-al-Bob"/>
@@ -525,7 +525,7 @@
                             <outlet property="delegate" destination="FyP-J8-Ydt" id="esy-yD-32I"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Personnel" id="FW4-OV-oEq">
+                    <navigationItem key="navigationItem" title="Nhân Sự" id="FW4-OV-oEq">
                         <barButtonItem key="leftBarButtonItem" image="trash.fill" catalog="system" id="6Wy-P8-XR9">
                             <color key="tintColor" systemColor="systemRedColor"/>
                         </barButtonItem>
@@ -570,9 +570,9 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JGV-92-8qS">
                                                 <rect key="frame" x="70" y="0.0" width="284" height="52"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KDR-q8-JN9">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập tên nhân viên..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KDR-q8-JN9">
                                                         <rect key="frame" x="0.0" y="0.0" width="284" height="52"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                 </subviews>
@@ -614,6 +614,7 @@
                                                 <color key="tintColor" systemColor="tertiarySystemBackgroundColor"/>
                                                 <color key="selectedSegmentTintColor" systemColor="tertiarySystemBackgroundColor"/>
                                                 <connections>
+                                                    <action selector="HandleChangeGender:" destination="xbT-uL-K7b" eventType="valueChanged" id="Adc-nI-jHf"/>
                                                     <action selector="segmentValueChaged:" destination="xbT-uL-K7b" eventType="valueChanged" id="3Ga-L9-5VU"/>
                                                 </connections>
                                             </segmentedControl>
@@ -634,7 +635,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Fp-W7-9fI">
                                                 <rect key="frame" x="91.333333333333314" y="0.0" width="236" height="50"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Nhan Vien" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRj-ed-PFQ">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="1223" text="Nhan Vien" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRj-ed-PFQ">
                                                         <rect key="frame" x="0.0" y="0.0" width="236" height="50"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <nil key="textColor"/>
@@ -672,15 +673,19 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="x4Z-iN-Fh5">
                                         <rect key="frame" x="0.0" y="223" width="354" height="50"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birthday : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ggy-dB-spx">
-                                                <rect key="frame" x="0.0" y="0.0" width="88.333333333333329" height="50"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ngày sinh  : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ggy-dB-spx">
+                                                <rect key="frame" x="0.0" y="0.0" width="106.33333333333333" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="0NB-5i-itH">
-                                                <rect key="frame" x="98.333333333333357" y="0.0" width="255.66666666666663" height="50"/>
+                                                <rect key="frame" x="116.33333333333336" y="0.0" width="237.66666666666663" height="50"/>
                                                 <color key="tintColor" systemColor="systemRedColor"/>
+                                                <locale key="locale" localeIdentifier="vi_VN"/>
+                                                <connections>
+                                                    <action selector="HandleChangeBirthday:" destination="xbT-uL-K7b" eventType="valueChanged" id="e6y-wl-yvY"/>
+                                                </connections>
                                             </datePicker>
                                         </subviews>
                                     </stackView>
@@ -824,10 +829,14 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="jhT-Zc-y5Y">
                             <color key="tintColor" systemColor="systemRedColor"/>
+                            <connections>
+                                <segue destination="tm1-2n-0G2" kind="unwind" unwindAction="unWindFromPersonnelDetailControllerWithSegue:" id="5CL-3p-Ojo"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="btnSave" destination="jhT-Zc-y5Y" id="0Tu-2b-9Rq"/>
+                        <outlet property="dpBirthday" destination="0NB-5i-itH" id="wwd-Bm-Lsz"/>
                         <outlet property="imgAvatar" destination="VdK-pR-hbv" id="QuC-jh-cps"/>
                         <outlet property="lblDepartment" destination="vtO-WV-y6v" id="sLR-kY-lVE"/>
                         <outlet property="lblPosition" destination="XRj-ed-PFQ" id="9qY-Hj-9wx"/>
@@ -840,6 +849,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rDy-4Q-vIe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="tm1-2n-0G2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2778" y="2441"/>
         </scene>
@@ -860,7 +870,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập Phòng Ban..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="691-dG-6AV">
+                                    <textField opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập tên phòng ban..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="691-dG-6AV">
                                         <rect key="frame" x="0.0" y="84" width="374" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" textContentType="name"/>
@@ -907,7 +917,7 @@
             </objects>
             <point key="canvasLocation" x="4300" y="2441"/>
         </scene>
-        <!--Deperment-->
+        <!--Phòng Ban-->
         <scene sceneID="JoU-JF-LH2">
             <objects>
                 <tableViewController id="JU5-Xm-OJZ" customClass="DepartmentTableViewController" customModule="ManagerPersonel" customModuleProvider="target" sceneMemberID="viewController">
@@ -949,7 +959,7 @@
                             <outlet property="delegate" destination="JU5-Xm-OJZ" id="IGd-SP-Ffu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Deperment" id="Bnd-pE-JFo">
+                    <navigationItem key="navigationItem" title="Phòng Ban" id="Bnd-pE-JFo">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="h0y-8O-Z2M">
                             <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
@@ -1055,7 +1065,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rE9-6s-8Su">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập tên dự án..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rE9-6s-8Su">
                                         <rect key="frame" x="20" y="63" width="334" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1179,7 +1189,7 @@
         <segue reference="Pc7-CF-Ajh"/>
         <segue reference="aWm-Fw-bjy"/>
         <segue reference="mi5-i4-lJw"/>
-        <segue reference="11z-3A-UaP"/>
+        <segue reference="cQm-mb-4eu"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.turn.up.left" catalog="system" width="128" height="99"/>

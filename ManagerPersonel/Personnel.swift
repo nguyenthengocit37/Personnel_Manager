@@ -12,7 +12,7 @@ class Personnel{
     var personnelCode:String
     var personnelName: String
     var personnelBirthday:Date
-    var personnelGender:Bool
+    var personnelGender:Bool //true : Male false : Female
     var codeProject:String
     var codePosition:String
     var codeDepartment:String

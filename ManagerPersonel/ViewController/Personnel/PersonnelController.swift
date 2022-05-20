@@ -136,7 +136,7 @@ class PersonnelController: UITableViewController {
         }
     }
     
-    @IBAction func unWindFromPorsonnelDetailController(segue:UIStoryboardSegue){
+    @IBAction func unWindFromPersonnelDetailController(segue:UIStoryboardSegue){
         if let personnelController = segue.source as? PersonnelDetailViewController{
 
             if let personnel = personnelController.personnel{
@@ -237,7 +237,7 @@ class PersonnelController: UITableViewController {
                         //Create Date Formatter
                         let dateFormatter = DateFormatter()
                         //Type Formatter
-                        dateFormatter.dateFormat = "dd/MM/yy"
+                        dateFormatter.dateFormat = "dd/MM/yyyyy"
                         let date = dateFormatter.date(from: birthDay)!
                         //Create Personnel
                         if let personnel = Personnel(personnelCode:code,personnelName: name,personnelBirthday: date, personnelGender: gender,codeProject: codeProject,codePosition: codePosition,codeDepartment: codeDepartment,personnelImage:avt){

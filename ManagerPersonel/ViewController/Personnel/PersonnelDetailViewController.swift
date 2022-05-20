@@ -21,6 +21,7 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
     @IBOutlet weak var tfName: UITextField!
     @IBOutlet weak var segGender: UISegmentedControl!
     @IBOutlet weak var btnSave: UIBarButtonItem!
+    @IBOutlet weak var dpBirthday: UIDatePicker!
     //Department
     @IBOutlet weak var uvListDeparment: UIView!
     @IBOutlet weak var lblDepartment: UILabel!
@@ -37,8 +38,18 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
     }
     var navigationType:NavigationType = .newPersonnel
     
+    
     var personnel:Personnel?
+    var genderPersonnel:Bool = true
+    var birthdayPersonnel:String = "1/1/2000"
+    //Index item selected in dropdown
+    var isSelectedPosition:Int?
+    var isSelectedDepartment:Int?
+    var isSelectedProject:Int?
+    //Create Array
     var positions = [Position]()
+    var departments = [Department]()
+    var projects = [Project]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,17 +58,14 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
         
         //Delegation of the TextField Object
         tfName.delegate = self
-        //Create Dropdown list derpartment
-//        let arrDeparment = ["Car", "Motorcycle", "Truck"]
-//        let arrProject = ["Quan Ly Hoc Sinh","Quan Ly Thu Vien"]
-//        let arrPosition = ["Nhan vien", "Leader", "Truong Phong"]
-        getListPosition()
-        createDropList()
-//        dropList(dropDown : ddDepartment,listItem: arrDeparment, lblItem: self.lblDepartment,uiView: uvListDeparment)
-//        dropList(dropDown : ddProject,listItem: arrProject, lblItem: self.lblProject,uiView: uvListProject)
         
-//
-//   dropList(dropDown : self.ddPosition,listItem:self.createDropList(), lblItem: self.lblPosition,uiView: uvListPosition)
+        //Create Dropdown list Position
+        getListPosition()
+        //Create Dropdown list Project
+        getListProject()
+        //Create Dropdown list Department
+        getListDepartment()
+        
         //Get personnel from PersonnelViewCell
         if let personnel = self.personnel{
             navigationItem.title = personnel.personnelName
@@ -67,7 +75,35 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
             }else{
                 segGender.selectedSegmentIndex = 1
             }
-            //...
+            dpBirthday.setDate(personnel.personnelBirthday, animated: true)
+            imgAvatar.image = personnel.personnelImage
+            //Set position name for position label
+            ref.child("position/\(personnel.codePosition)/namePosition").getData(completion: { err,data in
+                guard err == nil else{
+                    print(err!.localizedDescription)
+                    return
+                }
+                self.lblPosition.text = data?.value as? String ?? "khong co"
+            })
+            //Set department name for department label
+            ref.child("department/\(personnel.codeDepartment)/nameDepartment").getData(completion: { err,data in
+                guard err == nil else{
+                    print(err!.localizedDescription)
+                    return
+                }
+                self.lblDepartment.text = data?.value as? String ?? ""
+            })
+            //Set project name for project label
+            ref.child("project/\(personnel.codeProject)/nameProject").getData(completion: { err,data in
+                guard err == nil else{
+                    print(err!.localizedDescription)
+                    return
+                }
+                self.lblProject.text = data?.value as? String ?? ""
+            })
+            
+            
+            
         }
     }
     //MARK: TextField's Delegate Functions
@@ -122,17 +158,31 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
         if let btnSender = sender as? UIBarButtonItem{
             if btnSender == btnSave{
                 let name = tfName.text ?? ""
+                var nameImage = "female"
+                if genderPersonnel {
+                    nameImage = "male"
+                }
+                let codePosition = positions[isSelectedPosition ?? 0].codePosition
+                let codeDepartment = departments[isSelectedDepartment ?? 0].codeDepartment
+                let codeProject = projects[isSelectedProject ?? 0].codeProject
                 switch navigationType {
                 //Create new Position
                 case .newPersonnel:
-//                    if let id = ref?.child("personnel").childByAutoId().key{
-//                            self.ref.child("personnel").child(id).setValue([
-//                                "personnelCode": id,
-//                                "personnelCode": name,
-//                                "countPersonnel" : 0,
-//                            ])
-//
-//                    }
+                    if let id = ref?.child("personnel").childByAutoId().key{
+                        
+                            self.ref.child("personnel").child(id).setValue([
+                                "personnelCode": id,
+                                "personnelName": name,
+                                "personnelBirthday" : birthdayPersonnel,
+                                "personnelGender" : self.genderPersonnel,
+                                "personnelImage":nameImage,
+                                "codePosition":codePosition,
+                                "codeDepartment":codeDepartment,
+                                "codeProject":codeProject,
+                            ])
+//                        personnel = Personnel(personnelCode: String, personnelName: <#T##String#>, personnelBirthday: <#T##Date#>, personnelGender: <#T##Bool#>, codeProject: <#T##String#>, codePosition: <#T##String#>, codeDepartment: <#T##String#>, personnelImage: <#T##UIImage?#>)
+
+                    }
                     break
                 //Update Position
                 case .updatePersonnel :
@@ -160,27 +210,44 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
             }
         }
     }
-    //Handle create droplist
-    private func createDropList(){
-        var positionNames = [String]()
-        for item in self.positions {
-            positionNames.append(item.namePosition)
-            print(item.namePosition)
-        }
-        dropList(dropDown: self.ddPosition, listItem: positionNames, lblItem: lblPosition, uiView: uvListPosition)
-    }
     //Create List Dropdown
     private func dropList(dropDown : DropDown,listItem : [String], lblItem : UILabel,uiView : UIView ){
         dropDown.anchorView = uiView
         dropDown.dataSource = listItem
         dropDown.dismissMode = .onTap
-        // Action triggered on selection
-        dropDown.selectionAction = {(index: Int, item: String) in
-          print("Selected item: \(item) at index: \(index)")
-            lblItem.text = listItem[index]
-        }
-        // Will set a custom width instead of the anchor view width
         dropDown.width = 200
+        if lblItem === lblProject {
+            // Action triggered on selection
+            dropDown.selectionAction = {(index: Int, item: String) in
+              //print("Selected project item: \(item) at index: \(index)")
+                lblItem.text = listItem[index]
+                self.isSelectedProject = index
+            }
+        }else if lblItem === lblDepartment {
+            // Action triggered on selection
+            dropDown.selectionAction = {(index: Int, item: String) in
+              //print("Selected department item: \(item) at index: \(index)")
+                lblItem.text = listItem[index]
+                self.isSelectedDepartment = index
+            }
+        }else if lblItem === lblPosition {
+            // Action triggered on selection
+            dropDown.selectionAction = {(index: Int, item: String) in
+              //print("Selected position item: \(item) at index: \(index)")
+                lblItem.text = listItem[index]
+                self.isSelectedPosition = index
+            }
+        }
+        
+        
+    }
+    //Handle create droplist Position
+    private func createDropListPosition(){
+        var positionNames = [String]()
+        for item in self.positions {
+            positionNames.append(item.namePosition)
+        }
+        dropList(dropDown: self.ddPosition, listItem: positionNames, lblItem: lblPosition, uiView: uvListPosition)
     }
     //Get list Position from Firebase
     private func getListPosition(){
@@ -202,7 +269,83 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
                      }
                      
                  }
-                self.createDropList()
+                self.createDropListPosition()
              })
+    }
+    //Handle create droplist Departments
+    private func createDropListDepartment(){
+        var departmentNames = [String]()
+        for item in self.departments {
+            departmentNames.append(item.nameDepartment)
+        }
+        dropList(dropDown: self.ddDepartment, listItem: departmentNames, lblItem: lblDepartment, uiView: uvListDeparment)
+    }
+    //Get list Department from Firebase
+    private func getListDepartment(){
+             self.ref.child("department").getData(completion: { error, snapshot in
+                 if error != nil{
+                   print(error!.localizedDescription)
+                   return
+                 }
+                 for child in snapshot!.children.allObjects as! [DataSnapshot] {
+                     if let dict = child.value as? [String : AnyObject]{
+                        let code = dict["codeDepartment"] as? String ?? ""
+                        let name = dict["nameDepartment"] as? String ?? ""
+                        if let dep = Department(codeDepartment: code, nameDepartment: name){
+                            self.departments.append(dep)
+                        }
+                     }else{
+                        print("Loi khi lay du lieu")
+                     }
+                     
+                 }
+                self.createDropListDepartment()
+             })
+    }
+    //Handle create droplist Projects
+    private func createDropListProject(){
+        var projectNames = [String]()
+        for item in self.projects {
+            projectNames.append(item.nameProject)
+        }
+        dropList(dropDown: self.ddProject, listItem: projectNames, lblItem: lblProject, uiView: uvListProject)
+    }
+    //Get list Department from Firebase
+    private func getListProject(){
+             self.ref.child("project").getData(completion: { error, snapshot in
+                 if error != nil{
+                   print(error!.localizedDescription)
+                   return
+                 }
+                 for child in snapshot!.children.allObjects as! [DataSnapshot] {
+                     if let dict = child.value as? [String : AnyObject]{
+                        let code = dict["codeProject"] as! String
+                        let name = dict["nameProject"] as! String
+                        if let prj = Project(codeProject: code, nameProject: name){
+                            self.projects.append(prj)
+                        }
+                     }else{
+                        print("Loi khi lay du lieu")
+                     }
+                     
+                 }
+                self.createDropListProject()
+             })
+    }
+    @IBAction func HandleChangeBirthday(_ sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        birthdayPersonnel = dateFormatter.string(from: sender.date)
+        dpBirthday.date = sender.date
+    }
+    @IBAction func HandleChangeGender(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+            case 0:
+                genderPersonnel = true
+            case 1:
+                genderPersonnel = false
+            default:
+                break;
+            }
     }
 }
