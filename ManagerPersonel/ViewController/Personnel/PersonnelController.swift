@@ -223,7 +223,6 @@ class PersonnelController: UITableViewController {
                  }
                  for child in snapshot!.children.allObjects as! [DataSnapshot] {
                      if let dict = child.value as? [String : AnyObject]{
-                        
                         let code = dict["personnelCode"] as! String
                         let name = dict["personnelName"] as! String
                         let image = dict["personnelImage"] as? String ?? "male"

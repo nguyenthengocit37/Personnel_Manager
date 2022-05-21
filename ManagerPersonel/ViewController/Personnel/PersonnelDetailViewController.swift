@@ -8,6 +8,7 @@
 import UIKit
 import DropDown
 import FirebaseDatabase
+import Toast_Swift
 
 class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -65,7 +66,6 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
         getListProject()
         //Create Dropdown list Department
         getListDepartment()
-        
         //Get personnel from PersonnelViewCell
         if let personnel = self.personnel{
             navigationItem.title = personnel.personnelName
@@ -76,6 +76,9 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
                 segGender.selectedSegmentIndex = 1
             }
             dpBirthday.setDate(personnel.personnelBirthday, animated: true)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            birthdayPersonnel = dateFormatter.string(from: self.dpBirthday.date)
             imgAvatar.image = personnel.personnelImage
             //Set position name for position label
             ref.child("position/\(personnel.codePosition)/namePosition").getData(completion: { err,data in
@@ -102,8 +105,6 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
                 self.lblProject.text = data?.value as? String ?? ""
             })
             
-            
-            
         }
     }
     //MARK: TextField's Delegate Functions
@@ -124,7 +125,7 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
     @IBAction func btnShowProject(_ sender: Any){
         ddProject.show()
     }
-    //Handle back screen
+    //Handle back to previous screen
     @IBAction func btnBack(_ sender: UIBarButtonItem) {
         switch navigationType {
         case .newPersonnel:
@@ -158,18 +159,23 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
         if let btnSender = sender as? UIBarButtonItem{
             if btnSender == btnSave{
                 let name = tfName.text ?? ""
-                var nameImage = "female"
+                //Handle get name
+                var nameImage:String
                 if genderPersonnel {
                     nameImage = "male"
+                }else{
+                    nameImage = "female"
                 }
+                //Handle get code Position
                 let codePosition = positions[isSelectedPosition ?? 0].codePosition
+                //Handle get codeDepartment
                 let codeDepartment = departments[isSelectedDepartment ?? 0].codeDepartment
+                //Handle get codeDepartment
                 let codeProject = projects[isSelectedProject ?? 0].codeProject
                 switch navigationType {
                 //Create new Position
                 case .newPersonnel:
                     if let id = ref?.child("personnel").childByAutoId().key{
-                        
                             self.ref.child("personnel").child(id).setValue([
                                 "personnelCode": id,
                                 "personnelName": name,
@@ -180,33 +186,34 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
                                 "codeDepartment":codeDepartment,
                                 "codeProject":codeProject,
                             ])
-//                        personnel = Personnel(personnelCode: String, personnelName: <#T##String#>, personnelBirthday: <#T##Date#>, personnelGender: <#T##Bool#>, codeProject: <#T##String#>, codePosition: <#T##String#>, codeDepartment: <#T##String#>, personnelImage: <#T##UIImage?#>)
+                        personnel = Personnel(personnelCode: id, personnelName: name, personnelBirthday: dpBirthday.date, personnelGender: self.genderPersonnel, codeProject: codeProject, codePosition: codePosition, codeDepartment: codeDepartment, personnelImage: imgAvatar.image)
 
                     }
-                    break
+                break
                 //Update Position
                 case .updatePersonnel :
                     if let key = personnel?.personnelCode {
-//                        position!.namePosition = name
-//                        let pos = ["codePosition": position!.codePosition,
-//                                   "namePosition": position!.namePosition,
-//                                   "countPersonnel": position!.countPersonnel] as [String : Any]
-//                        let childUpdate = ["/position/\(key)" : pos]
-//                        self.ref.updateChildValues(childUpdate)
-                        
+                        personnel!.personnelName = name
+                        personnel!.personnelBirthday = dpBirthday.date
+                        personnel!.personnelImage = imgAvatar.image
+                        personnel!.personnelGender = self.genderPersonnel
+                        personnel!.codeProject = codeProject
+                        personnel!.codePosition = codePosition
+                        personnel!.codeDepartment = codeDepartment
+                        let personnel = [
+                            "personnelCode":key,
+                            "personnelName": name,
+                            "personnelBirthday" : birthdayPersonnel,
+                            "personnelGender" : self.genderPersonnel,
+                            "personnelImage":nameImage,
+                            "codePosition":codePosition,
+                            "codeDepartment":codeDepartment,
+                            "codeProject":codeProject,
+                        ] as [String : Any]
+                        let childUpdate = ["/personnel/\(key)" : personnel]
+                        self.ref.updateChildValues(childUpdate)
                     }
                 }
-            }
-        }
-    }
-    //Handle Cancel
-    @IBAction func handleCancel(_ sender: UIBarButtonItem) {
-        switch navigationType {
-        case .newPersonnel:
-            dismiss(animated: true, completion: nil)
-        case .updatePersonnel:
-            if let navigationController = navigationController{
-                navigationController.popViewController(animated: true)
             }
         }
     }
@@ -247,6 +254,9 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
         for item in self.positions {
             positionNames.append(item.namePosition)
         }
+        //Set label item
+        lblPosition.text = positions[0].namePosition
+        //Create dropdown
         dropList(dropDown: self.ddPosition, listItem: positionNames, lblItem: lblPosition, uiView: uvListPosition)
     }
     //Get list Position from Firebase
@@ -278,6 +288,9 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
         for item in self.departments {
             departmentNames.append(item.nameDepartment)
         }
+        //Set label item
+        lblDepartment.text = self.departments[0].nameDepartment
+        //Create dropdown
         dropList(dropDown: self.ddDepartment, listItem: departmentNames, lblItem: lblDepartment, uiView: uvListDeparment)
     }
     //Get list Department from Firebase
@@ -308,6 +321,9 @@ class PersonnelDetailViewController: UIViewController,UITextFieldDelegate, UIIma
         for item in self.projects {
             projectNames.append(item.nameProject)
         }
+        //Set label item
+        lblProject.text = self.projects[0].nameProject
+        //Create dropdown
         dropList(dropDown: self.ddProject, listItem: projectNames, lblItem: lblProject, uiView: uvListProject)
     }
     //Get list Department from Firebase
