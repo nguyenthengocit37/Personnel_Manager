@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import Toast_Swift
 
-class LoginController: UIViewController {
+class LoginController: UIViewController,UITextFieldDelegate {
     //MARK:Proterty
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
@@ -17,15 +17,23 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //Setup delegate
+        tfEmail.delegate = self
+        tfPassword.delegate = self
         // Do any additional setup after loading the view.
     }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        tfEmail.resignFirstResponder()
+        return true
+    }
+    
     @IBAction func btnLogin(_ sender: UIButton) {
         //Handle Login
         if(validateTextField()){
             Auth.auth().signIn(withEmail: tfEmail.text!, password: tfPassword.text!) { (result, error) in
                 if error != nil {
-                    self.view.makeToast("Sai Email hoac Mat khau",position:.top)
+                    self.view.makeToast("Sai tài khoản hoặc mật khẩu",position:.top)
                 }else{
                     let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                     if let nextViewController = storyBoard.instantiateViewController(withIdentifier: "mainviewcontroller") as? MainViewController{
@@ -48,13 +56,13 @@ class LoginController: UIViewController {
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         let isEmail = emailPred.evaluate(with: txtEmail)
         if(txtEmail!.isEmpty || txtPassword!.isEmpty){
-            self.view.makeToast("Vui long nhap du cac truong",position: .top)
+            self.view.makeToast("Vui lòng nhập đủ các trường",position: .top)
             return false
         }else if !isEmail{
-            self.view.makeToast("Vui long nhap dung Email",position: .top)
+            self.view.makeToast("Vui lòng nhập đúng địa chỉ email",position: .top)
             return false
         }else if txtPassword!.count < 6 {
-            self.view.makeToast("Password chua it nhat 6 ky tu",position: .top)
+            self.view.makeToast("Password phải chứa ít nhất 6 ký tự",position: .top)
             return false
         }
         return true;
