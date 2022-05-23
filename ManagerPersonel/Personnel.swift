@@ -9,6 +9,7 @@ import UIKit
 
 class Personnel{
     //MARK: Properties
+    //Update
     var personnelCode:String
     var personnelName: String
     var personnelBirthday:Date
