@@ -62,7 +62,7 @@ class PersonnelController: UITableViewController {
             return cell
             
         }else{
-            fatalError("Khong the tao cell")
+            fatalError("Khong the tao")
         }
     }
     
